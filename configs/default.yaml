@@ -1,0 +1,32 @@
+# Benchmark configuration. Swap systems/params here; no code changes needed.
+dataset: data/techdocs_qa.jsonl
+
+metrics:
+  - coverage
+  - grounding
+  # - correctness          # LLM-as-judge; needs judge_provider + an API key
+
+# judge_provider: openai   # uncomment when using the 'correctness' metric
+
+concurrency: 4
+
+systems:
+  # Two offline stub systems so the harness runs with no API key.
+  # Their numbers only illustrate the format -- see the commented real systems.
+  - name: strong-stub
+    system: fake
+    params: { quality: high, with_citations: true }
+  - name: weak-stub
+    system: fake
+    params: { quality: low, with_citations: false }
+
+  # --- Real comparisons (require the research-agent project + an API key) ---
+  # - name: single-shot-rag
+  #   system: single_shot_rag
+  #   params: { llm_provider: openai, retrieval_mode: stub, top_k: 5 }
+  # - name: agent-1-iteration
+  #   system: research_agent
+  #   params: { llm_provider: openai, retrieval_mode: stub, max_iterations: 1 }
+  # - name: agent-2-iterations
+  #   system: research_agent
+  #   params: { llm_provider: openai, retrieval_mode: stub, max_iterations: 2 }
