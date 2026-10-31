@@ -8,3 +8,4 @@ venv/
 .env
 .pytest_cache/
 results/*.json
+data/.hotpotqa_cache.json

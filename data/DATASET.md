@@ -45,7 +45,8 @@ Append JSONL lines following the schema. Keep `id` unique. The dataset is conten
 
 - **Source:** HotpotQA, distractor setting, dev split (Yang et al., 2018, *HotpotQA: A Dataset for
   Diverse, Explainable Multi-hop Question Answering*, EMNLP). Licence CC BY-SA 4.0.
-- **Sample:** 100 questions drawn at random with a fixed seed (13), balanced 50/50 between
+- **Sample:** 100 questions drawn with a fixed seed (13) from pages of the dev set at random
+  offsets (the dataset viewer API is rate-limited, so rows are fetched 100 at a time), balanced 50/50 between
   "bridge" questions (find entity A, then a fact about it) and "comparison" questions (compare two
   entities). All dev questions are labelled "hard" by the dataset authors.
 - **Corpus:** every context paragraph of the sampled questions, deduplicated by title: two gold
