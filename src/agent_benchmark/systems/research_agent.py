@@ -23,12 +23,14 @@ class ResearchAgentSystem:
         local_corpus_path: str | None = None,
         model: str | None = None,
         base_url: str | None = None,
+        rpm: float | None = None,
+        reasoning_effort: str | None = None,
     ) -> None:
         self.name = name
         self._params = dict(
             llm_provider=llm_provider, retrieval_mode=retrieval_mode, max_iterations=max_iterations,
             max_sub_questions=max_sub_questions, top_k=top_k, local_corpus_path=local_corpus_path,
-            model=model, base_url=base_url,
+            model=model, base_url=base_url, rpm=rpm, reasoning_effort=reasoning_effort,
         )
         self._tool = None
 

@@ -10,6 +10,15 @@ def build_metrics(names: list[str], judge_provider: str | None = None, judge=Non
     metrics: list[Metric] = []
     llm = None
     extractor = None
+    combined = bool(judge is not None and getattr(judge, "combined", False))
+
+    def get_extractor():
+        nonlocal extractor
+        if extractor is None:
+            from .short_answer import CombinedGoldJudge, ShortAnswerExtractor
+
+            extractor = (CombinedGoldJudge if combined else ShortAnswerExtractor)(judge_llm())
+        return extractor
 
     def judge_llm():
         nonlocal llm
@@ -30,12 +39,16 @@ def build_metrics(names: list[str], judge_provider: str | None = None, judge=Non
         elif key == "correctness":
             from .judge import CorrectnessJudge
 
-            metrics.append(CorrectnessJudge(judge_llm()))
-        elif key in {"answer_em", "answer_f1"}:
-            from .short_answer import AnswerEM, AnswerF1, ShortAnswerExtractor
+            if combined:
+                from .short_answer import CombinedCorrectness
 
-            extractor = extractor or ShortAnswerExtractor(judge_llm())
-            metrics.append(AnswerEM(extractor) if key == "answer_em" else AnswerF1(extractor))
+                metrics.append(CombinedCorrectness(get_extractor(), CorrectnessJudge(judge_llm())))
+            else:
+                metrics.append(CorrectnessJudge(judge_llm()))
+        elif key in {"answer_em", "answer_f1"}:
+            from .short_answer import AnswerEM, AnswerF1
+
+            metrics.append(AnswerEM(get_extractor()) if key == "answer_em" else AnswerF1(get_extractor()))
         elif key == "evidence_recall":
             from .short_answer import EvidenceRecall
 
@@ -52,5 +65,8 @@ def _build_judge_llm(judge=None, provider: str | None = None):
     from ..systems._settings import agent_settings
 
     if judge is not None:
-        return build_llm_client(agent_settings(llm_provider=judge.provider, model=judge.model, base_url=judge.base_url))
+        return build_llm_client(agent_settings(
+            llm_provider=judge.provider, model=judge.model, base_url=judge.base_url,
+            rpm=judge.rpm, reasoning_effort=judge.reasoning_effort,
+        ))
     return build_llm_client(agent_settings(llm_provider=provider or "fake"))

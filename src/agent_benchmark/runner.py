@@ -16,9 +16,11 @@ class BenchmarkRunner:
     error for that task instead of aborting the whole run.
     """
 
-    def __init__(self, metrics: list[Metric], concurrency: int = 4) -> None:
+    def __init__(self, metrics: list[Metric], concurrency: int = 4, checkpoint=None, done=None) -> None:
         self.metrics = metrics
         self.concurrency = max(1, concurrency)
+        self.checkpoint = checkpoint      # path: every finished task is appended here as it completes
+        self.done = done or {}            # (config_name, task_id) -> TaskResult from an earlier, interrupted run
 
     async def _run_one(self, system, config_name: str, task: Task, sem: asyncio.Semaphore) -> TaskResult:
         async with sem:
@@ -43,10 +45,25 @@ class BenchmarkRunner:
                 )
             return TaskResult(task_id=task.id, config_name=config_name, answer=answer, scores=scores)
 
+    def _save(self, r: TaskResult) -> TaskResult:
+        if self.checkpoint is not None:
+            with open(self.checkpoint, "a", encoding="utf-8") as f:
+                f.write(r.model_dump_json() + "\n")
+        return r
+
     async def run_config(self, config: SystemConfig, tasks: list[Task]) -> list[TaskResult]:
         system = build_system(config)
         sem = asyncio.Semaphore(self.concurrency)
-        return list(await asyncio.gather(*(self._run_one(system, config.name, t, sem) for t in tasks)))
+        kept = {t.id: self.done[(config.name, t.id)] for t in tasks if (config.name, t.id) in self.done}
+        todo = [t for t in tasks if t.id not in kept]
+        if kept:
+            print(f"    {len(kept)} already done, {len(todo)} to go", flush=True)
+
+        async def one(t):
+            return self._save(await self._run_one(system, config.name, t, sem))
+
+        fresh = {r.task_id: r for r in await asyncio.gather(*(one(t) for t in todo))}
+        return [kept.get(t.id) or fresh[t.id] for t in tasks]
 
     async def run(self, configs: list[SystemConfig], tasks: list[Task]) -> list[TaskResult]:
         results: list[TaskResult] = []

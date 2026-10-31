@@ -42,6 +42,9 @@ class JudgeConfig(BaseModel):
     provider: str = "fake"                                # openai | anthropic | fake
     model: str | None = None
     base_url: str | None = None
+    rpm: float | None = None                              # share the quota with the systems
+    reasoning_effort: str | None = None
+    combined: bool = False                                # one call gives the short answer AND the verdict
 
 
 class RunConfig(BaseModel):

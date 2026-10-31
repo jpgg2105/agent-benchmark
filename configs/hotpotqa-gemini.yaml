@@ -1,0 +1,44 @@
+# The same comparison on Gemini's free tier. Free quotas are small and change
+# without notice (check yours in Google AI Studio > Usage), so this config:
+#   - uses Flash-Lite, the free model with the most room (measured Sept 2026:
+#     about 15 requests/minute and 500/day, shared by everything below)
+#   - caps itself at 12 requests/minute
+#   - compares two systems instead of four, with one judge call per answer
+# A full run is about 1,100 calls, so it spans 2 to 3 days of quota: run it, and
+# when it stops on the daily limit, run the same command with --resume the next
+# day. Finished questions are kept in results/checkpoint-hotpotqa-gemini.jsonl.
+# Put GEMINI_API_KEY=... in a .env file in this folder.
+# Note: on the free tier Google may use prompts and responses to improve its
+# products; this dataset is public, so nothing private is sent.
+dataset: data/hotpotqa_dev100.jsonl
+
+metrics: [answer_em, answer_f1, correctness, evidence_recall]
+
+judge:
+  provider: openai
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  model: gemini-3.5-flash-lite
+  reasoning_effort: low
+  rpm: 12
+  combined: true          # one call: extract the short answer and grade it
+
+baseline: single-shot-k10
+
+price_per_mtok: { input: 0, output: 0 }   # free tier
+
+concurrency: 2
+bootstrap_samples: 2000
+seed: 0
+
+systems:
+  - name: single-shot-k10
+    system: single_shot_rag
+    params: { llm_provider: openai, base_url: "https://generativelanguage.googleapis.com/v1beta/openai/",
+              model: gemini-3.5-flash-lite, reasoning_effort: low, rpm: 12,
+              retrieval_mode: local, local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 10 }
+  - name: agent-2-rounds
+    system: research_agent
+    params: { llm_provider: openai, base_url: "https://generativelanguage.googleapis.com/v1beta/openai/",
+              model: gemini-3.5-flash-lite, reasoning_effort: low, rpm: 12,
+              retrieval_mode: local, local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 5,
+              max_iterations: 2, max_sub_questions: 3 }

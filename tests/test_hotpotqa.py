@@ -93,3 +93,34 @@ def test_end_to_end_offline_with_research_agent(tmp_path):
     assert all(r.answer.usage.get("calls", 0) >= 3 for r in agent)
     assert all(r.answer.trace and r.answer.trace["sub_questions"] for r in agent)
     assert all(0.0 <= r.scores["evidence_recall"] <= 1.0 for r in results)
+
+
+def test_combined_judge_parses_one_call_into_answer_and_verdict():
+    from agent_benchmark.metrics.short_answer import AnswerEM, CombinedCorrectness, CombinedGoldJudge
+
+    class LLM:
+        calls = 0
+        async def complete(self, *, system, user, temperature=0.2):
+            LLM.calls += 1
+            return '```json\n{"short_answer": "Paris", "correct": true}\n```'
+
+    j = CombinedGoldJudge(LLM())
+    task = Task(id="t", domain="d", question="q", answer="Paris")
+    ans = SystemAnswer(answer="It is in Paris, France.")
+    em = asyncio.run(AnswerEM(j).score(task, ans))
+    ok = asyncio.run(CombinedCorrectness(j, None).score(task, ans))
+    assert em == 1.0 and ok == 1.0 and LLM.calls == 1
+
+
+def test_resume_skips_finished_tasks(tmp_path):
+    from agent_benchmark.metrics.coverage import CoverageMetric
+    from agent_benchmark.runner import BenchmarkRunner
+
+    tasks = [Task(id=f"t{i}", domain="d", question="explain index trade-offs", key_points=["index"]) for i in range(3)]
+    cfg = SystemConfig(name="s", system="fake", params={})
+    ck = tmp_path / "ck.jsonl"
+    first = asyncio.run(BenchmarkRunner([CoverageMetric()], checkpoint=ck).run([cfg], tasks[:2]))
+    done = {(r.config_name, r.task_id): r for r in first}
+    again = asyncio.run(BenchmarkRunner([CoverageMetric()], checkpoint=ck, done=done).run([cfg], tasks))
+    assert [r.task_id for r in again] == ["t0", "t1", "t2"]
+    assert len(ck.read_text().splitlines()) == 3   # only the new task was run and saved

@@ -14,6 +14,10 @@ def agent_settings(**params: Any):
     p = {k: v for k, v in params.items() if v is not None}
     model = p.pop("model", None)
     base_url = p.pop("base_url", None)
+    if "rpm" in p:
+        p["llm_rpm"] = p.pop("rpm")
+    if "reasoning_effort" in p:
+        p["openai_reasoning_effort"] = p.pop("reasoning_effort")
     provider = p.get("llm_provider", "fake")
     if model:
         p["anthropic_model" if provider == "anthropic" else "openai_model"] = model

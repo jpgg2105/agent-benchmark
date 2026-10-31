@@ -60,6 +60,74 @@ class ShortAnswerExtractor:
         return self._cache[key]
 
 
+_COMBINED_SYSTEM = (
+    "You grade a RESPONSE to a QUESTION. Do two things.\n"
+    "1. short_answer: copy the short answer the RESPONSE commits to (an entity, name, number, "
+    "date, or yes/no), exactly as the response gives it. Base this ONLY on the response; never "
+    "copy it from the gold answer. If the response gives no answer, use \"NONE\".\n"
+    "2. correct: true if the response's answer means the same as the GOLD ANSWER (aliases, extra "
+    "correct detail and formatting are fine), false if it is wrong, hedges between options or says "
+    "the information is unavailable.\n"
+    'Reply with only JSON: {"short_answer": "...", "correct": true}'
+)
+
+
+class CombinedGoldJudge(ShortAnswerExtractor):
+    """One judge call per response that returns both the extracted short answer
+    and the pass/fail verdict: half the calls, for tight free-tier quotas.
+    The extraction instruction forbids using the gold answer."""
+
+    def __init__(self, llm) -> None:
+        super().__init__(llm)
+        self._verdicts: dict[tuple[str, int], float] = {}
+
+    async def _assess(self, task: Task, answer: SystemAnswer) -> None:
+        import json
+
+        key = (task.id, hash(answer.answer))
+        if key in self._cache:
+            return
+        if not answer.answer.strip():
+            self._cache[key], self._verdicts[key] = "", 0.0
+            return
+        raw = await self.llm.complete(
+            system=_COMBINED_SYSTEM,
+            user=f"QUESTION:\n{task.question}\n\nGOLD ANSWER:\n{task.answer}\n\nRESPONSE:\n{answer.answer}",
+            temperature=0.0,
+        )
+        text = raw.strip()
+        if text.startswith("```"):
+            text = text.strip("`").split("\n", 1)[-1]
+        try:
+            data = json.loads(text[text.index("{"): text.rindex("}") + 1])
+            short = str(data.get("short_answer", "")).strip()
+            verdict = 1.0 if data.get("correct") in (True, "true", 1, "1") else 0.0
+        except (ValueError, AttributeError):
+            short, verdict = "", 0.0
+        self._cache[key] = "" if short.upper() == "NONE" else short
+        self._verdicts[key] = verdict
+
+    async def extract(self, task: Task, answer: SystemAnswer) -> str:
+        await self._assess(task, answer)
+        return self._cache[(task.id, hash(answer.answer))]
+
+    async def verdict(self, task: Task, answer: SystemAnswer) -> float:
+        await self._assess(task, answer)
+        return self._verdicts[(task.id, hash(answer.answer))]
+
+
+class CombinedCorrectness:
+    name = "correctness"
+
+    def __init__(self, judge: CombinedGoldJudge, fallback) -> None:
+        self.judge, self.fallback = judge, fallback
+
+    async def score(self, task: Task, answer: SystemAnswer) -> float:
+        if task.answer:
+            return await self.judge.verdict(task, answer)
+        return await self.fallback.score(task, answer)
+
+
 class AnswerEM:
     name = "answer_em"
 

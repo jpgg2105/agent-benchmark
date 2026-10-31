@@ -104,6 +104,13 @@ What makes the comparison fair:
 - **Cost and latency.** Tokens and LLM calls per question, cost from `price_per_mtok`, p50 and p95
   latency.
 
+**On Gemini's free tier** (`configs/hotpotqa-gemini.yaml`): free quotas are small (measured in
+September 2026 at about 15 requests a minute and 500 a day for Flash-Lite, and 20 a day for Flash),
+so that config compares two systems, caps itself at 12 requests a minute and grades each answer
+with one judge call. A full run needs about 1,100 calls, so it spans two or three days: when it
+stops on the daily limit, run the same command with `--resume` after the quota resets (midnight
+Pacific). `--systems name1,name2` runs a subset now and merges it with earlier runs.
+
 Results land in `results/` as a `LEADERBOARD-<config>.md` and a full `results-*.json` with every
 answer, score, token count and agent trace.
 
