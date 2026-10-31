@@ -111,6 +111,13 @@ with one judge call. A full run needs about 1,100 calls, so it spans two or thre
 stops on the daily limit, run the same command with `--resume` after the quota resets (midnight
 Pacific). `--systems name1,name2` runs a subset now and merges it with earlier runs.
 
+On Windows, `scripts\run_gemini.ps1` does all of it in one command (setup, tests, data, dry run, the run itself, and `--resume` on later days):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\run_gemini.ps1 -Limit 5   # first, 5 questions
+powershell -ExecutionPolicy Bypass -File scripts\run_gemini.ps1            # then once a day until done
+```
+
 Results land in `results/` as a `LEADERBOARD-<config>.md` and a full `results-*.json` with every
 answer, score, token count and agent trace.
 

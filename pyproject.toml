@@ -3,7 +3,7 @@ name = "agent-benchmark"
 version = "0.1.0"
 description = "A reproducible benchmark and leaderboard for question-answering and research-agent systems. Measures the research-agent project against a single-shot RAG baseline."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = [
     "pydantic>=2.6",
