@@ -63,7 +63,7 @@ def _from_api(n: int, seed: int, cache_path: Path) -> list[dict]:
     rng.shuffle(pages)
     cache = json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
     pool: list[dict] = []
-    want_pages = max(4, (n * 3) // PAGE + 2)   # about 3 candidates per question, balanced later
+    want_pages = max(4, (n * 4) // PAGE + 2)   # about 4 candidates per question (only ~20% are comparisons)
     for k, page in enumerate(pages[:want_pages], start=1):
         key = str(page)
         if key not in cache:
