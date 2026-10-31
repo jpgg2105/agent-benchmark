@@ -17,6 +17,13 @@ The first project retrieves. The second composes retrieval into a planning/criti
 
 A benchmark you publish is different from "I evaluated my own app." It curates a dataset, defines metrics, compares configurations head-to-head, and ships a reproducible leaderboard others can run.
 
+## Headline result
+
+On 100 HotpotQA multi-hop questions, the research agent answered **86%** correctly against **74%**
+for a single retrieve-and-answer call (paired difference +12 points, 95% CI [+4, +20]), at about
+6× the LLM calls. The gain is concentrated in bridge questions (+20 points); a second evaluator
+agreed with the LLM judge on 39 of 40 sampled answers. Full write-up: [RESULTS.md](RESULTS.md).
+
 ## What it measures
 
 | Metric | What it captures | Needs an API key? |
