@@ -38,3 +38,21 @@ Current size: 12 tasks (3 easy, 6 medium, 3 hard). This is intentionally small �
 ## Extending it
 
 Append JSONL lines following the schema. Keep `id` unique. The dataset is content-hashed on load, so any edit produces a new dataset version — results from before and after an edit will be correctly distinguished rather than silently compared.
+
+---
+
+# Dataset: HotpotQA sample (built by `scripts/prepare_hotpotqa.py`)
+
+- **Source:** HotpotQA, distractor setting, dev split (Yang et al., 2018, *HotpotQA: A Dataset for
+  Diverse, Explainable Multi-hop Question Answering*, EMNLP). Licence CC BY-SA 4.0.
+- **Sample:** 100 questions drawn at random with a fixed seed (13), balanced 50/50 between
+  "bridge" questions (find entity A, then a fact about it) and "comparison" questions (compare two
+  entities). All dev questions are labelled "hard" by the dataset authors.
+- **Corpus:** every context paragraph of the sampled questions, deduplicated by title: two gold
+  paragraphs plus eight retrieved distractors per question. Distractors were chosen by the dataset
+  authors to look relevant, so BM25 over this pool is a realistic retrieval problem.
+- **Fields:** `answer` (gold short answer), `expected_sources` (titles of the gold supporting
+  paragraphs), `kind` (bridge | comparison), `source_id` (the original HotpotQA id).
+- **Limitations:** Wikipedia-style, English, single-turn; answers are short spans, so the metrics
+  favour systems that commit to one answer. 100 questions give 95% intervals of roughly ±9 points
+  on accuracy-like metrics; differences smaller than that need a bigger sample (`--n 300`).

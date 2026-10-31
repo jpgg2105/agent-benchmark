@@ -8,5 +8,5 @@ from .models import RunConfig
 def load_run_config(path: str | Path) -> RunConfig:
     import yaml  # lazy import
 
-    data = yaml.safe_load(Path(path).read_text())
+    data = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     return RunConfig.model_validate(data)

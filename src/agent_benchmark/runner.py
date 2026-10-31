@@ -34,7 +34,13 @@ class BenchmarkRunner:
                 )
             if not answer.latency_s:
                 answer.latency_s = time.perf_counter() - t0
-            scores = {m.name: await m.score(task, answer) for m in self.metrics}
+            try:
+                scores = {m.name: await m.score(task, answer) for m in self.metrics}
+            except Exception as exc:  # a judge outage is recorded, not fatal
+                return TaskResult(
+                    task_id=task.id, config_name=config_name, answer=answer,
+                    error=f"scoring failed: {type(exc).__name__}: {exc}",
+                )
             return TaskResult(task_id=task.id, config_name=config_name, answer=answer, scores=scores)
 
     async def run_config(self, config: SystemConfig, tasks: list[Task]) -> list[TaskResult]:
@@ -45,5 +51,6 @@ class BenchmarkRunner:
     async def run(self, configs: list[SystemConfig], tasks: list[Task]) -> list[TaskResult]:
         results: list[TaskResult] = []
         for config in configs:
+            print(f"  running {config.name} on {len(tasks)} tasks...", flush=True)
             results.extend(await self.run_config(config, tasks))
         return results

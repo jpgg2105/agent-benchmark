@@ -1,0 +1,15 @@
+# Same pipeline with the fake LLM: checks that data, retriever and scoring work
+# end to end with no API key and no cost. Numbers are meaningless.
+dataset: data/hotpotqa_dev100.jsonl
+metrics: [answer_em, answer_f1, correctness, evidence_recall]
+judge: { provider: fake }
+baseline: single-shot-k5
+concurrency: 4
+systems:
+  - name: single-shot-k5
+    system: single_shot_rag
+    params: { llm_provider: fake, retrieval_mode: local, local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 5 }
+  - name: agent-2-rounds
+    system: research_agent
+    params: { llm_provider: fake, retrieval_mode: local, local_corpus_path: data/hotpotqa_corpus.jsonl,
+              top_k: 5, max_iterations: 2, max_sub_questions: 3 }

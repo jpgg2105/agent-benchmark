@@ -1,0 +1,46 @@
+# Real comparison on 100 HotpotQA multi-hop questions (build the data first:
+#   python scripts/prepare_hotpotqa.py).
+# Every system uses the same model and the same BM25 retriever over the same
+# paragraph pool, so differences come from what each does with retrieval.
+# API keys come from the environment or a .env file in this folder, never from here.
+dataset: data/hotpotqa_dev100.jsonl
+
+metrics:
+  - answer_em          # exact match of the extracted short answer (SQuAD/HotpotQA normalization)
+  - answer_f1          # token F1 of the extracted short answer
+  - correctness        # LLM judge, pass/fail against the gold answer
+  - evidence_recall    # share of the gold supporting paragraphs the system retrieved
+
+judge:
+  provider: openai
+  model: gpt-4o-mini    # grader + short-answer extractor; a stronger model is better if you have one
+
+baseline: single-shot-k5
+
+# USD per million tokens for the systems' model, to report cost per question.
+# Check your provider's pricing page and update before running.
+price_per_mtok: { input: 0.15, output: 0.60 }
+
+concurrency: 4
+bootstrap_samples: 2000
+seed: 0
+
+systems:
+  - name: single-shot-k5
+    system: single_shot_rag
+    params: { llm_provider: openai, model: gpt-4o-mini, retrieval_mode: local,
+              local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 5 }
+  - name: single-shot-k10      # same budget of paragraphs the agent tends to read
+    system: single_shot_rag
+    params: { llm_provider: openai, model: gpt-4o-mini, retrieval_mode: local,
+              local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 10 }
+  - name: agent-1-round
+    system: research_agent
+    params: { llm_provider: openai, model: gpt-4o-mini, retrieval_mode: local,
+              local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 5,
+              max_iterations: 1, max_sub_questions: 3 }
+  - name: agent-2-rounds
+    system: research_agent
+    params: { llm_provider: openai, model: gpt-4o-mini, retrieval_mode: local,
+              local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 5,
+              max_iterations: 2, max_sub_questions: 3 }

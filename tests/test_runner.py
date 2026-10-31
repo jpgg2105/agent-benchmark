@@ -42,10 +42,10 @@ def test_end_to_end_offline_and_ranking():
 
 
 def test_failing_system_records_error_not_crash():
-    # 'single_shot_rag' will fail at runtime here because the research-agent
-    # package isn't installed in this test environment -- the runner must
-    # capture that as a per-task error rather than raising.
-    configs = [SystemConfig(name="broken", system="single_shot_rag", params={})]
+    # This system fails at runtime either way: with an ImportError when the
+    # research-agent package isn't installed, or a ValueError for the unknown
+    # retrieval mode when it is. The runner must record a per-task error.
+    configs = [SystemConfig(name="broken", system="single_shot_rag", params={"retrieval_mode": "no-such-mode"})]
     runner = BenchmarkRunner([CoverageMetric()], concurrency=1)
     results = asyncio.run(runner.run(configs, _tasks()))
     assert len(results) == len(_tasks())

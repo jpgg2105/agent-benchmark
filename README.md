@@ -23,7 +23,9 @@ A benchmark you publish is different from "I evaluated my own app." It curates a
 | --- | --- | --- |
 | **coverage** | Fraction of a question's rubric key-points present in the answer (lexical proxy) | No |
 | **grounding** | Whether the answer cites a source — and, when a task specifies expected sources, whether the citation matches | No |
-| **correctness** | LLM-as-judge rating of the answer against the rubric (0–1) | Yes (optional) |
+| **correctness** | LLM-as-judge: pass/fail against a gold answer, or a 0–1 rubric rating when there is none | Yes (optional) |
+| **answer_em / answer_f1** | Exact match and token F1 of the short answer the response commits to (extracted by the judge model, scored with SQuAD/HotpotQA normalization) | Yes |
+| **evidence_recall** | Share of the gold supporting documents the system retrieved | No |
 
 `coverage` and `grounding` are deterministic and offline, so the whole harness — and its test suite — runs with no API key. `correctness` is an optional LLM judge you switch on in the config.
 
@@ -54,7 +56,7 @@ pip install -e ".[dev]"
 python -m agent_benchmark.cli run --config configs/default.yaml
 ```
 
-This runs two offline stub systems and writes a `LEADERBOARD.md` plus a timestamped `results-*.json`. The stub numbers only illustrate the leaderboard *format* — real numbers require real systems.
+This runs two offline stub systems and writes `results/LEADERBOARD-default.md` plus a timestamped `results-*.json`. The stub numbers only illustrate the leaderboard *format* — real numbers require real systems.
 
 ### Real comparison (research-agent vs single-shot)
 
@@ -70,6 +72,40 @@ python -m agent_benchmark.cli run --config configs/default.yaml
 ```
 
 Uncomment the `single-shot-rag`, `agent-1-iteration`, and `agent-2-iterations` blocks (and the `correctness` metric + `judge_provider`) in the config to produce a head-to-head leaderboard.
+
+### The real run: 100 HotpotQA multi-hop questions
+
+The techdocs set above is small and tests general knowledge. The headline comparison uses
+[HotpotQA](https://hotpotqa.github.io/) (Yang et al., 2018), whose questions need two
+documents to answer, which is exactly where planning and follow-up searches should help.
+
+```bash
+pip install -e "../research-agent[openai]" -e ".[dev]"
+python scripts/prepare_hotpotqa.py                 # 100 questions (balanced bridge/comparison) + paragraph pool
+python -m agent_benchmark.cli run --config configs/hotpotqa-offline.yaml   # free dry run, fake LLM
+python -m agent_benchmark.cli run --config configs/hotpotqa.yaml --limit 5 # 5 real questions first
+python -m agent_benchmark.cli run --config configs/hotpotqa.yaml           # the full run
+```
+
+What makes the comparison fair:
+
+- **Same retriever for everyone.** A BM25 index over the pooled context paragraphs of all sampled
+  questions (two gold paragraphs and eight distractors each, about 1,000 paragraphs). The agent and
+  the baseline call the same tool; only what they do with it differs.
+- **Same model for every system**, set once in the config.
+- **Two baselines.** `single-shot-k5` reads as many paragraphs per search as the agent;
+  `single-shot-k10` gets a larger context in one call, so the agent has to beat more reading,
+  not just less.
+- **Standard metrics.** Exact match and token F1 on the short answer (SQuAD/HotpotQA normalization),
+  a pass/fail LLM judge against the gold answer, and evidence recall (share of the gold supporting
+  paragraphs the system retrieved).
+- **Uncertainty reported.** Every number comes with a 95% bootstrap interval, and each system is
+  compared with the baseline question by question (paired differences, wins/ties/losses).
+- **Cost and latency.** Tokens and LLM calls per question, cost from `price_per_mtok`, p50 and p95
+  latency.
+
+Results land in `results/` as a `LEADERBOARD-<config>.md` and a full `results-*.json` with every
+answer, score, token count and agent trace.
 
 ### Publish the leaderboard (HuggingFace Spaces)
 
@@ -88,7 +124,7 @@ config.yaml ─▶ load dataset (+ version hash)
             ─▶ for each system config:
                  build system ─▶ run all tasks concurrently ─▶ score each answer
             ─▶ aggregate into per-config scorecards
-            ─▶ render LEADERBOARD.md + results-<timestamp>.json + console table
+            ─▶ render LEADERBOARD-<config>.md + results-<timestamp>.json + console table
 ```
 
 A system that errors on a task records the error for that task and keeps going; the scorecard reports how many tasks errored.
