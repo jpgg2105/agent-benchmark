@@ -1,6 +1,6 @@
 # Agent Benchmark
 
-> A reproducible benchmark and leaderboard for question-answering and research-agent systems. It measures the [research-agent](../research-agent) (a multi-agent system) against a single-shot RAG baseline on a fixed dataset, so you can prove the agent loop actually earns its complexity.
+> A reproducible benchmark and leaderboard for question-answering and research-agent systems. It measures the [research-agent](https://github.com/jpgg2105/research-agent) (a multi-agent system) against a single-shot RAG baseline on a fixed dataset, so you can prove the agent loop actually earns its complexity.
 
 ## Where this sits
 
@@ -100,9 +100,9 @@ What makes the comparison fair:
   questions (two gold paragraphs and eight distractors each, about 1,000 paragraphs). The agent and
   the baseline call the same tool; only what they do with it differs.
 - **Same model for every system**, set once in the config.
-- **Two baselines.** `single-shot-k5` reads as many paragraphs per search as the agent;
-  `single-shot-k10` gets a larger context in one call, so the agent has to beat more reading,
-  not just less.
+- **A strong baseline.** `single-shot-k10` reads 10 paragraphs in one call, twice what the agent
+  reads per search, so the agent has to beat more reading, not just less. (`single-shot-k5` is
+  defined in the configs but wasn't part of the published run.)
 - **Standard metrics.** Exact match and token F1 on the short answer (SQuAD/HotpotQA normalization),
   a pass/fail LLM judge against the gold answer, and evidence recall (share of the gold supporting
   paragraphs the system retrieved).
@@ -161,8 +161,8 @@ A system that errors on a task records the error for that task and keeps going; 
 ## Lessons learned
 
 - Publishing a *comparison* (agent vs baseline) is far more informative than a single system's scores — the delta is the story, and sometimes the baseline is closer than expected.
-- A cheap lexical coverage metric correlates surprisingly well with the LLM judge on clear-cut questions, and costs nothing to run in CI; the judge earns its keep on nuanced answers.
-- Content-hashing the dataset caught a silent case where an edited question would have made two result files quietly incomparable.
+- A judge has to be checked: here a second evaluator agreed with it on 39 of 40 answers, and the one disagreement showed it was slightly strict.
+- Check that the prompts are symmetric: the baseline was told it could say the sources were insufficient and the agent wasn't, which is now listed as a limit of the published result.
 - Capturing per-task errors instead of failing the run matters the moment a provider rate-limits you mid-benchmark.
 
 ## Testing

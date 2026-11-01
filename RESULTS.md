@@ -61,9 +61,11 @@ comparison.
   sub-questions were "Where was William Penn imprisoned…?" and "In what year did this prison stop
   being used as a prison?"; the second search returned the Tower of London paragraph, and it
   answered 1952.
-- **The critic matters on the hardest questions.** It accepted the first round for 74 questions
-  (agent 89% vs baseline 81% on those) and asked for a second round on 26 (agent 77% vs baseline
-  54%). 6 of the 15 wins came from second-round questions.
+- **The critic's second round lands on the hardest questions.** It accepted the first round for 74
+  questions (agent 89% vs baseline 81% on those) and asked for a second round on 26 (agent 77% vs
+  baseline 54%). 6 of the 15 wins came from second-round questions. This is an observation, not a
+  measured effect of the critic: the critic chose those questions itself, and there is no
+  agent-without-critic run to compare against.
 - **Overall evidence recall barely moves** (+3 points, not significant): on most questions one
   search of 10 paragraphs already finds both hops. The agent's advantage is concentrated in the
   minority where it doesn't.
@@ -80,8 +82,10 @@ comparison.
 ## How far to trust the judge
 
 The same model answers and judges, so a second evaluator, different from the judge, graded 40
-randomly chosen answers (20 per system) by hand against the gold answers, without seeing the
-system or the judge's verdict. It agreed with the judge on **39 of 40** (Cohen's κ = 0.92). The one
+answers (20 per system) against the gold answers, without seeing which system wrote each answer or
+what the judge said. The sample over-represents the questions where the two systems disagreed:
+13 of the 40 answers come from those 18 questions, which is where a judge error would change the
+result. It agreed with the judge on **39 of 40** (Cohen's κ = 0.92). The one
 disagreement: the gold answer is "Plymouth Gin" and the agent said "gin"; the judge marked it
 wrong, the second evaluator right. The judge was, if anything, slightly strict. The grades are in
 [`results/published/second-grader-40.csv`](results/published/second-grader-40.csv).
@@ -97,6 +101,14 @@ equally, so they don't change the difference.
 - One model, a small one. A stronger model may close the gap for the baseline, or widen it.
 - Wikipedia-style questions with short answers. Real document Q&A has longer answers and messier
   retrieval.
+- **The prompts aren't symmetric on abstaining.** The baseline's prompt says "If the sources are
+  insufficient, say so plainly"; the agent's synthesizer has no such line. 13 of the agent's 15 wins
+  are questions where the baseline abstained, so part of the gap may come from that instruction
+  rather than from the agent loop. Rerunning the baseline without it (or with two searches) would
+  settle it.
+- This benchmark predates the projects where hypotheses were written down before running. The
+  headline comparison and metrics were fixed in advance; the breakdowns in "Where the gain comes
+  from" were done after seeing the results.
 
 ## What I'd change next
 
