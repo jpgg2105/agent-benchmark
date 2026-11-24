@@ -8,6 +8,13 @@ _SYSTEM = (
     "Answer the user's question using only the provided sources, concisely and "
     "accurately. If the sources are insufficient, say so plainly."
 )
+# The published run used _SYSTEM, which lets the baseline abstain; the agent's synthesizer has
+# no such line. With abstain=False the baseline gets the synthesizer's rule instead, so the two
+# systems are told the same thing about missing information.
+_SYSTEM_NO_ABSTAIN = (
+    "Answer the user's question using only the provided sources, concisely and "
+    "accurately. Do not introduce facts that are not present in the sources."
+)
 
 
 class SingleShotRAGSystem:
@@ -30,9 +37,11 @@ class SingleShotRAGSystem:
         base_url: str | None = None,
         rpm: float | None = None,
         reasoning_effort: str | None = None,
+        abstain: bool = True,
     ) -> None:
         self.name = name
         self.top_k = top_k
+        self.system_prompt = _SYSTEM if abstain else _SYSTEM_NO_ABSTAIN
         self._params = dict(
             llm_provider=llm_provider, retrieval_mode=retrieval_mode, top_k=top_k,
             local_corpus_path=local_corpus_path, model=model, base_url=base_url, rpm=rpm, reasoning_effort=reasoning_effort,
@@ -53,6 +62,6 @@ class SingleShotRAGSystem:
             f"[Source {i}] {s.title or 'untitled'}\n{s.snippet or ''}"
             for i, s in enumerate(sources, start=1)
         )
-        text = await llm.complete(system=_SYSTEM, user=f"Question:\n{question}\n\nSources:\n{rendered}")
+        text = await llm.complete(system=self.system_prompt, user=f"Question:\n{question}\n\nSources:\n{rendered}")
         titles = [s.title or s.locator or "source" for s in sources]
         return SystemAnswer(answer=text, citations=titles, retrieved=titles, usage=usage_of(llm))

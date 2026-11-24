@@ -50,3 +50,11 @@ def test_failing_system_records_error_not_crash():
     results = asyncio.run(runner.run(configs, _tasks()))
     assert len(results) == len(_tasks())
     assert all(r.error is not None for r in results)
+
+
+def test_single_shot_prompt_can_drop_the_abstain_invitation():
+    from agent_benchmark.systems.single_shot_rag import SingleShotRAGSystem
+
+    assert "insufficient" in SingleShotRAGSystem("a").system_prompt
+    matched = SingleShotRAGSystem("b", abstain=False).system_prompt
+    assert "insufficient" not in matched and "Do not introduce facts" in matched

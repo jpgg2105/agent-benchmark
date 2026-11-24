@@ -1,0 +1,33 @@
+# Rerun of the baseline from configs/hotpotqa-gemini.yaml with one change: its prompt no longer
+# invites it to say the sources are insufficient, which the agent's synthesizer prompt never did.
+# Everything else is identical (model, judge, retriever, top_k, questions), so comparing these
+# answers with the agent's published answers isolates the effect of that instruction.
+# About 200 calls (100 answers + 100 judge calls), under one day of free quota.
+# Then: python scripts/compare_matched.py results/published/hotpotqa-gemini-2026-10-31.json results/results-<timestamp>.json
+dataset: data/hotpotqa_dev100.jsonl
+
+metrics: [answer_em, answer_f1, correctness, evidence_recall]
+
+judge:
+  provider: openai
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  model: gemini-3.5-flash-lite
+  reasoning_effort: low
+  rpm: 12
+  combined: true
+
+baseline: single-shot-k10-matched
+
+price_per_mtok: { input: 0, output: 0 }
+
+concurrency: 2
+bootstrap_samples: 2000
+seed: 0
+
+systems:
+  - name: single-shot-k10-matched
+    system: single_shot_rag
+    params: { llm_provider: openai, base_url: "https://generativelanguage.googleapis.com/v1beta/openai/",
+              model: gemini-3.5-flash-lite, reasoning_effort: low, rpm: 12,
+              retrieval_mode: local, local_corpus_path: data/hotpotqa_corpus.jsonl, top_k: 10,
+              abstain: false }
