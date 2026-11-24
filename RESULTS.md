@@ -1,14 +1,19 @@
 # Results: does a four-agent loop beat a single LLM call?
 
-**Yes, on multi-hop questions, by 12 points, at about 6× the calls.** On 100 HotpotQA questions,
-the research agent (planner, researchers, critic, synthesizer) answered 86% correctly against 74%
-for a single retrieve-and-answer call that reads 10 paragraphs. Compared question by question the
-difference is +12 points, 95% CI [+4, +20]. Almost all of it comes from "bridge" questions, where
-the answer needs a second search for something the first search revealed.
+**Yes on bridge questions, by 18 points. Overall by 8 points, with an interval that reaches zero.**
+On 100 HotpotQA questions the research agent (planner, researchers, critic, synthesizer) answered
+86% correctly. The first run (31 October) compared it with a single retrieve-and-answer call that
+reads 10 paragraphs and got 74%, a +12 point gap. But only the baseline's prompt invited it to say
+the sources were insufficient, and 13 of the agent's 15 wins were questions where it did. Rerun with
+the same rule for both (24 November), the baseline got 78%: the difference is **+8 points, 95% CI
+[0, +17]**, with 13 wins and 5 losses for the agent. All of it is on "bridge" questions, where the
+answer needs a second search for something the first one revealed: 90% against 72%, **+18 [+6, +30]**.
+On comparison questions the two are level (82% against 84%).
 
-Run: 31 October 2026 · model `gemini-3.5-flash-lite` (free tier) for every system and for the
+Runs: 31 October 2026 (both systems) and 24 November 2026 (baseline with matched prompts) · model `gemini-3.5-flash-lite` (free tier) for every system and for the
 judge · dataset version `eda7c50eb4e1` · full per-question output in
-[`results/published/hotpotqa-gemini-2026-10-31.json`](results/published/hotpotqa-gemini-2026-10-31.json).
+[`results/published/hotpotqa-gemini-2026-10-31.json`](results/published/hotpotqa-gemini-2026-10-31.json)
+and [`results/published/hotpotqa-gemini-matched-2026-11-24.json`](results/published/hotpotqa-gemini-matched-2026-11-24.json).
 
 ## Setup
 
@@ -26,7 +31,11 @@ judge · dataset version `eda7c50eb4e1` · full per-question output in
   gold supporting paragraphs the system retrieved). 95% bootstrap intervals; paired differences on
   the same questions.
 
-## Results
+## Results of the first run (31 October)
+
+This is the original comparison, with the asymmetric prompt. The next section reruns the baseline
+without it.
+
 
 | | single-shot-k10 | agent-2-rounds | Paired difference [95% CI] |
 | --- | --- | --- | --- |
@@ -50,7 +59,35 @@ Question by question on correctness: the agent wins 15, loses 3, ties 82.
 inside the free quota, so most of the measured time is waiting. Calls and tokens are the fair cost
 comparison.
 
-## Where the gain comes from
+## Rerun with matched prompts (24 November)
+
+The baseline's prompt said "If the sources are insufficient, say so plainly"; the agent's synthesizer
+had no such line, only "Do not introduce facts that are not present in the findings." The rerun gives
+the baseline that same rule instead (`abstain: false` in
+[`configs/hotpotqa-gemini-matched.yaml`](configs/hotpotqa-gemini-matched.yaml)). Everything else is
+unchanged: model, judge, retriever, 10 paragraphs, the same 100 questions. The agent's answers are the
+published ones; [`scripts/compare_matched.py`](scripts/compare_matched.py) does the comparison and
+writes [`results/published/matched-prompts.json`](results/published/matched-prompts.json).
+
+| Correct (judge) | Baseline | Agent | Paired difference [95% CI] | Agent wins / losses |
+| --- | --- | --- | --- | --- |
+| Original baseline prompt | 74% | 86% | +12 [+4, +20] | 15 / 3 |
+| **Matched prompts** | **78%** | **86%** | **+8 [0, +17]** | 13 / 5 |
+| Matched, bridge (50) | 72% | 90% | **+18 [+6, +30]** | |
+| Matched, comparison (50) | 84% | 82% | −2 [−12, +8] | |
+
+- **About a third of the original gap came from the instruction.** Without the invitation, the
+  baseline answered 4 more questions correctly (8 verdicts changed). An exact McNemar test on the 18
+  questions where the systems disagree gives p = 0.10, against 0.008 in the first run.
+- **The baseline still gave up 10 times** without being told it could (keyword count, answers judged
+  wrong), and 7 of the agent's 13 wins are among them. On those questions the information really was
+  missing from one search, which is what the agent's extra searches fix.
+- **The agent's advantage is bridge questions, and it holds:** +18 points with an interval well clear
+  of zero. On comparison questions a single call is as good and costs a sixth of the calls.
+- One rerun of one system: some of the 4-point change is run-to-run variation of the model, which
+  wasn't measured separately.
+
+## Where the gain comes from (first run)
 
 - **The baseline gives up; the agent asks the second question.** 13 of the agent's 15 wins are
   questions where the baseline answered that the sources were insufficient (it did that 17 times;
@@ -70,7 +107,7 @@ comparison.
   search of 10 paragraphs already finds both hops. The agent's advantage is concentrated in the
   minority where it doesn't.
 
-## Where the agent loses
+## Where the agent loses (first run)
 
 - **Over-answering comparisons.** "Which is a flowering plant, Pueraria or Pleiospilos?" The
   baseline said Pleiospilos; the agent said both. Writing a long answer invites claims the sources
@@ -101,11 +138,8 @@ equally, so they don't change the difference.
 - One model, a small one. A stronger model may close the gap for the baseline, or widen it.
 - Wikipedia-style questions with short answers. Real document Q&A has longer answers and messier
   retrieval.
-- **The prompts aren't symmetric on abstaining.** The baseline's prompt says "If the sources are
-  insufficient, say so plainly"; the agent's synthesizer has no such line. 13 of the agent's 15 wins
-  are questions where the baseline abstained, so part of the gap may come from that instruction
-  rather than from the agent loop. Rerunning the baseline without it (or with two searches) would
-  settle it.
+- **The first run's prompts weren't symmetric on abstaining**, which inflated its gap from about 8 to
+  12 points. The rerun above fixes it for the baseline; the agent wasn't rerun.
 - This benchmark predates the projects where hypotheses were written down before running. The
   headline comparison and metrics were fixed in advance; the breakdowns in "Where the gain comes
   from" were done after seeing the results.
@@ -115,15 +149,19 @@ equally, so they don't change the difference.
 1. **Sequential hops:** let each sub-question see earlier findings, so "this prison" becomes "the
    Tower of London".
 2. **Answer length discipline** in the synthesizer for comparison questions.
-3. **Cost-aware routing:** a single call first, and the agent only when that call says the sources
-   are insufficient. Simulated on these results (after the fact, so a hypothesis to test, not a
-   result): 87% correct at about 2.1 calls per question, against 86% at 5.7 for the agent alone.
+3. **Cost-aware routing:** a single call first, and the agent only for bridge-style questions or when
+   that call says the sources are insufficient. On the first run this simulated to 87% correct at
+   about 2.1 calls per question (after the fact, so a hypothesis to test); with matched prompts the
+   baseline abstains less often, so the trigger should be the question type rather than abstention.
 
 ## Reproduce
 
 ```bash
 python scripts/prepare_hotpotqa.py
 python -m agent_benchmark.cli run --config configs/hotpotqa-gemini.yaml   # GEMINI_API_KEY in .env
+python -m agent_benchmark.cli run --config configs/hotpotqa-gemini-matched.yaml
+python scripts/compare_matched.py results/published/hotpotqa-gemini-2026-10-31.json results/results-<timestamp>.json
 ```
 
-On Windows: `powershell -ExecutionPolicy Bypass -File scripts\run_gemini.ps1`.
+On Windows: `powershell -ExecutionPolicy Bypass -File scripts\run_gemini.ps1`, then
+`powershell -ExecutionPolicy Bypass -File scripts\run_matched.ps1`.

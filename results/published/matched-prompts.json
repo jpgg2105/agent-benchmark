@@ -1,0 +1,31 @@
+{
+  "questions": 100,
+  "agent_accuracy": 0.86,
+  "original_baseline": {
+    "n": 100,
+    "baseline_accuracy": 0.74,
+    "difference": 0.12,
+    "ci95": [
+      0.04,
+      0.2
+    ],
+    "agent_wins": 15,
+    "agent_losses": 3,
+    "baseline_abstained": 16,
+    "wins_where_baseline_abstained": 14
+  },
+  "matched_baseline": {
+    "n": 100,
+    "baseline_accuracy": 0.78,
+    "difference": 0.08,
+    "ci95": [
+      0.0,
+      0.17
+    ],
+    "agent_wins": 13,
+    "agent_losses": 5,
+    "baseline_abstained": 10,
+    "wins_where_baseline_abstained": 7
+  },
+  "matched_run_file": "hotpotqa-gemini-matched-2026-11-24.json"
+}

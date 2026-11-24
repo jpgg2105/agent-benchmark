@@ -1,0 +1,4600 @@
+{
+  "dataset": "data/hotpotqa_dev100.jsonl",
+  "dataset_version": "eda7c50eb4e1",
+  "config": {
+    "dataset": "data/hotpotqa_dev100.jsonl",
+    "systems": [
+      {
+        "name": "single-shot-k10-matched",
+        "system": "single_shot_rag",
+        "params": {
+          "llm_provider": "openai",
+          "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+          "model": "gemini-3.5-flash-lite",
+          "reasoning_effort": "low",
+          "rpm": 12,
+          "retrieval_mode": "local",
+          "local_corpus_path": "data/hotpotqa_corpus.jsonl",
+          "top_k": 10,
+          "abstain": false
+        }
+      }
+    ],
+    "metrics": [
+      "answer_em",
+      "answer_f1",
+      "correctness",
+      "evidence_recall"
+    ],
+    "concurrency": 2,
+    "judge_provider": null,
+    "judge": {
+      "provider": "openai",
+      "model": "gemini-3.5-flash-lite",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "rpm": 12.0,
+      "reasoning_effort": "low",
+      "combined": true
+    },
+    "baseline": "single-shot-k10-matched",
+    "price_per_mtok": {
+      "input": 0.0,
+      "output": 0.0
+    },
+    "bootstrap_samples": 2000,
+    "seed": 0
+  },
+  "metrics": [
+    "answer_em",
+    "answer_f1",
+    "correctness",
+    "evidence_recall"
+  ],
+  "wall_clock_s": 646.7,
+  "judge_usage": {
+    "calls": 65,
+    "input_tokens": 13925,
+    "output_tokens": 1287
+  },
+  "scorecards": [
+    {
+      "config_name": "single-shot-k10-matched",
+      "n_tasks": 100,
+      "n_errors": 0,
+      "metrics": {
+        "answer_em": 0.58,
+        "answer_f1": 0.6885,
+        "correctness": 0.78,
+        "evidence_recall": 0.92
+      },
+      "ci95": {
+        "answer_em": [
+          0.48,
+          0.67
+        ],
+        "answer_f1": [
+          0.6025,
+          0.767
+        ],
+        "correctness": [
+          0.7,
+          0.86
+        ],
+        "evidence_recall": [
+          0.875,
+          0.96
+        ]
+      },
+      "mean_latency_s": 10.345,
+      "p50_latency_s": 10.232,
+      "p95_latency_s": 12.506,
+      "mean_calls": 1.0,
+      "mean_input_tokens": 1498.0,
+      "mean_output_tokens": 42.0,
+      "mean_cost_usd": 0.0,
+      "vs_baseline": {}
+    }
+  ],
+  "results": [
+    {
+      "task_id": "h001",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, Karl Shapiro and Elie Wiesel are both American writers. Karl Shapiro is identified as an American poet (Source 2), and Elie Wiesel is described as a Romanian-born American Jewish writer (Source 5) and a Jewish writer (Source 4).",
+        "citations": [
+          "Frances Frenaye",
+          "Karl Shapiro",
+          "Elie Wiesel Foundation for Humanity",
+          "Elisha Wiesel",
+          "Elie Wiesel",
+          "The Testament (Elie Wiesel novel)",
+          "Richard Heffner",
+          "Night (book)",
+          "Wiesel Commission",
+          "Mark Podwal"
+        ],
+        "retrieved": [
+          "Frances Frenaye",
+          "Karl Shapiro",
+          "Elie Wiesel Foundation for Humanity",
+          "Elisha Wiesel",
+          "Elie Wiesel",
+          "The Testament (Elie Wiesel novel)",
+          "Richard Heffner",
+          "Night (book)",
+          "Wiesel Commission",
+          "Mark Podwal"
+        ],
+        "latency_s": 1.588166099973023,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1545,
+          "output_tokens": 54
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h002",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the non-fiction book *The Unwinding* discusses Silicon Valley entrepreneur Peter Thiel. However, the sources do not mention his middle name.",
+        "citations": [
+          "The Unwinding",
+          "Oceanic Preservation Society",
+          "Kim Polese",
+          "Blueseed",
+          "David James Richards",
+          "Carnegie Mellon Silicon Valley",
+          "Jon Fisher",
+          "Will Harvey",
+          "Christophe Bisciglia",
+          "Mick Parsons"
+        ],
+        "retrieved": [
+          "The Unwinding",
+          "Oceanic Preservation Society",
+          "Kim Polese",
+          "Blueseed",
+          "David James Richards",
+          "Carnegie Mellon Silicon Valley",
+          "Jon Fisher",
+          "Will Harvey",
+          "Christophe Bisciglia",
+          "Mick Parsons"
+        ],
+        "latency_s": 6.421309800003655,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1474,
+          "output_tokens": 34
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h003",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Israeli presidential elections after the resignation of the seventh President of Israel (Ezer Weizman) took place in **2000**.",
+        "citations": [
+          "Israeli presidential election, 2000",
+          "Next Croatian presidential election",
+          "Politics of Argentina",
+          "Albanian presidential election, 2022",
+          "Ezer Weizman",
+          "Haitian presidential election, 2015",
+          "Croatian presidential election, 2000",
+          "Elections in Iowa",
+          "Finnish presidential election, 1940",
+          "Elections in Hamburg"
+        ],
+        "retrieved": [
+          "Israeli presidential election, 2000",
+          "Next Croatian presidential election",
+          "Politics of Argentina",
+          "Albanian presidential election, 2022",
+          "Ezer Weizman",
+          "Haitian presidential election, 2015",
+          "Croatian presidential election, 2000",
+          "Elections in Iowa",
+          "Finnish presidential election, 1940",
+          "Elections in Hamburg"
+        ],
+        "latency_s": 9.476846999954432,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1891,
+          "output_tokens": 35
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h004",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Giacomo Benvenuti and Claudio Monteverdi share the profession of composer (Source 1 identifies Giacomo Benvenuti as an \"Italian composer and musicologist,\" and Source 6 identifies Claudio Monteverdi as an \"Italian composer\").",
+        "citations": [
+          "Giacomo Benvenuti",
+          "Giacomo Badoaro",
+          "Stattkus-Verzeichnis",
+          "Monteverdi (crater)",
+          "Sergio Vartolo",
+          "Claudio Monteverdi",
+          "L'Orfeo discography",
+          "Ricciardo Amadino",
+          "John Whenham",
+          "Il ritorno d'Ulisse in patria"
+        ],
+        "retrieved": [
+          "Giacomo Benvenuti",
+          "Giacomo Badoaro",
+          "Stattkus-Verzeichnis",
+          "Monteverdi (crater)",
+          "Sergio Vartolo",
+          "Claudio Monteverdi",
+          "L'Orfeo discography",
+          "Ricciardo Amadino",
+          "John Whenham",
+          "Il ritorno d'Ulisse in patria"
+        ],
+        "latency_s": 12.579182600020431,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1938,
+          "output_tokens": 51
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.6667,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h005",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, William Cammisano was part of Nicholas Civella's Kansas City crime family.",
+        "citations": [
+          "William Cammisano",
+          "Rosario Naimo",
+          "Greco Mafia clan",
+          "Calcedonio Di Pisa",
+          "Angelo La Barbera",
+          "Kansas City crime family",
+          "Antonio Rotolo",
+          "Salvatore La Barbera",
+          "Antonio Cottone",
+          "Gaspare Spatuzza"
+        ],
+        "retrieved": [
+          "William Cammisano",
+          "Rosario Naimo",
+          "Greco Mafia clan",
+          "Calcedonio Di Pisa",
+          "Angelo La Barbera",
+          "Kansas City crime family",
+          "Antonio Rotolo",
+          "Salvatore La Barbera",
+          "Antonio Cottone",
+          "Gaspare Spatuzza"
+        ],
+        "latency_s": 9.582145499996841,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1197,
+          "output_tokens": 24
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h006",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, **Walt Disney Pictures** helped produce both *Return to Never Land* (released by them) and *McFarland, USA* (co-produced by them).",
+        "citations": [
+          "Peter Pan: Adventures in Never Land",
+          "Return to Never Land",
+          "McFarland, USA",
+          "Eudoxia Woodward",
+          "Never Land Books",
+          "American Tragedy (album)",
+          "Cinema of Colombia",
+          "List of Jake and the Never Land Pirates episodes",
+          "Jake and the Never Land Pirates",
+          "Clairvoyance (album)"
+        ],
+        "retrieved": [
+          "Peter Pan: Adventures in Never Land",
+          "Return to Never Land",
+          "McFarland, USA",
+          "Eudoxia Woodward",
+          "Never Land Books",
+          "American Tragedy (album)",
+          "Cinema of Colombia",
+          "List of Jake and the Never Land Pirates episodes",
+          "Jake and the Never Land Pirates",
+          "Clairvoyance (album)"
+        ],
+        "latency_s": 9.826059699989855,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1573,
+          "output_tokens": 39
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h007",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the title \"Calibraska\" is a portmanteau of the U.S. states Nebraska and California.",
+        "citations": [
+          "Calibraska (EP)",
+          "Jack &amp; Jack",
+          "Wild Life (Jack &amp; Jack song)",
+          "The Shawn Mendes EP",
+          "Tennessee Bird Walk",
+          "Do It Again (EP)",
+          "The Wild Life (song)",
+          "Twice discography",
+          "Jack Johnson (album)",
+          "Jeffree Star discography"
+        ],
+        "retrieved": [
+          "Calibraska (EP)",
+          "Jack &amp; Jack",
+          "Wild Life (Jack &amp; Jack song)",
+          "The Shawn Mendes EP",
+          "Tennessee Bird Walk",
+          "Do It Again (EP)",
+          "The Wild Life (song)",
+          "Twice discography",
+          "Jack Johnson (album)",
+          "Jeffree Star discography"
+        ],
+        "latency_s": 10.130444300011732,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1681,
+          "output_tokens": 30
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.4286,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h008",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the teams are from **Minnesota State University, Mankato** (Minnesota State Mavericks), whose mascot is Stomper and which began competing in the Northern Sun Intercollegiate Conference in 2008.",
+        "citations": [
+          "Southwest Minnesota State Mustangs",
+          "Augustana University Vikings",
+          "Minnesota State Mavericks",
+          "St. Cloud State Huskies",
+          "Upper Iowa Peacocks",
+          "Stomper the Maverick",
+          "Northern State Wolves",
+          "Sioux Falls Cougars",
+          "Northern Sun Men's Basketball Tournament",
+          "Minot State Beavers"
+        ],
+        "retrieved": [
+          "Southwest Minnesota State Mustangs",
+          "Augustana University Vikings",
+          "Minnesota State Mavericks",
+          "St. Cloud State Huskies",
+          "Upper Iowa Peacocks",
+          "Stomper the Maverick",
+          "Northern State Wolves",
+          "Sioux Falls Cougars",
+          "Northern Sun Men's Basketball Tournament",
+          "Minot State Beavers"
+        ],
+        "latency_s": 11.83849240001291,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1226,
+          "output_tokens": 47
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.5714,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h009",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no mention of a song by Tiffany. Therefore, the sources do not contain the answer to this question.",
+        "citations": [
+          "Ask Me Why",
+          "Tonight's the Night (The Shirelles album)",
+          "Twist and Shout",
+          "Please Please Me",
+          "P.S. I Love You (Beatles song)",
+          "I Saw Her Standing There",
+          "Please Please Me (song)",
+          "Renditions (album)",
+          "Beatles and Rolling Stones rivalry",
+          "What the Water Gave Me (song)"
+        ],
+        "retrieved": [
+          "Ask Me Why",
+          "Tonight's the Night (The Shirelles album)",
+          "Twist and Shout",
+          "Please Please Me",
+          "P.S. I Love You (Beatles song)",
+          "I Saw Her Standing There",
+          "Please Please Me (song)",
+          "Renditions (album)",
+          "Beatles and Rolling Stones rivalry",
+          "What the Water Gave Me (song)"
+        ],
+        "latency_s": 10.708358000032604,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1421,
+          "output_tokens": 29
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h010",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Parafield is adjacent to the Mawson Lakes campus of the University of South Australia.",
+        "citations": [
+          "Parafield Airport",
+          "Para Hills West, South Australia",
+          "Parafield, South Australia",
+          "Parafield Gardens, South Australia",
+          "No Fixed Address (band)",
+          "Arkaroola",
+          "Brian Hayes (lawyer)",
+          "Nuclear Fuel Cycle Royal Commission",
+          "Electoral district of Ramsay",
+          "Bob Day (disambiguation)"
+        ],
+        "retrieved": [
+          "Parafield Airport",
+          "Para Hills West, South Australia",
+          "Parafield, South Australia",
+          "Parafield Gardens, South Australia",
+          "No Fixed Address (band)",
+          "Arkaroola",
+          "Brian Hayes (lawyer)",
+          "Nuclear Fuel Cycle Royal Commission",
+          "Electoral district of Ramsay",
+          "Bob Day (disambiguation)"
+        ],
+        "latency_s": 7.557626400026493,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1191,
+          "output_tokens": 23
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h011",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Abraham Lincoln Neiman, Carrie Marcus Neiman, and Herbert Marcus cofounded Neiman Marcus in Dallas, Texas, in 1907.",
+        "citations": [
+          "Abraham Lincoln Neiman",
+          "Minnie Lichtenstein Marcus",
+          "Carrie Marcus Neiman",
+          "Lawrence Marcus",
+          "Neiman Marcus",
+          "Stanley Marcus",
+          "Neiman Marcus Building",
+          "Derrill Osborn",
+          "Ernestine Cannon",
+          "Bibliography of Abraham Lincoln"
+        ],
+        "retrieved": [
+          "Abraham Lincoln Neiman",
+          "Minnie Lichtenstein Marcus",
+          "Carrie Marcus Neiman",
+          "Lawrence Marcus",
+          "Neiman Marcus",
+          "Stanley Marcus",
+          "Neiman Marcus Building",
+          "Derrill Osborn",
+          "Ernestine Cannon",
+          "Bibliography of Abraham Lincoln"
+        ],
+        "latency_s": 9.992257299949415,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1614,
+          "output_tokens": 36
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.6667,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h012",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, while British commentator Colin Bryce is mentioned as working on the second season of *Viking: The Ultimate Obstacle Course* in Europe, the sources do not contain information about him\u2014or any other presenter\u2014being an Olympic participant or what sport they played.",
+        "citations": [
+          "Viking: The Ultimate Obstacle Course",
+          "Wipeout (2008 U.S. game show)",
+          "A*mazing",
+          "Techniques de Randonn\u00e9e \u00c9questre de Comp\u00e9tition",
+          "Makoto Nagano",
+          "All American Girl (2003 TV series)",
+          "Run for Your Lives (obstacle racing)",
+          "Obstacle racing",
+          "What Up with That",
+          "Emma Bunton"
+        ],
+        "retrieved": [
+          "Viking: The Ultimate Obstacle Course",
+          "Wipeout (2008 U.S. game show)",
+          "A*mazing",
+          "Techniques de Randonn\u00e9e \u00c9questre de Comp\u00e9tition",
+          "Makoto Nagano",
+          "All American Girl (2003 TV series)",
+          "Run for Your Lives (obstacle racing)",
+          "Obstacle racing",
+          "What Up with That",
+          "Emma Bunton"
+        ],
+        "latency_s": 11.359829800087027,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1953,
+          "output_tokens": 57
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h013",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Trace State Park is located approximately 7 miles east of Pontotoc [Source 2]. Pontotoc is located in the surrounding counties of Pontotoc (and Lee, where Tupelo is the county seat) [Source 7], but the sources do not explicitly state that Pontotoc is a county seat. \n\nHowever, looking at the city located 7 miles east of Trace State Park in the other direction: the park is also located \"7 mi west of Tupelo\" [Source 2], meaning Tupelo is approximately 7 miles east of Trace State Park. Tupelo is the county seat of **Lee County** [Source 7].",
+        "citations": [
+          "Marshall, Ohio",
+          "Trace State Park",
+          "Granville, Ohio",
+          "Canoe Creek State Park",
+          "East Fork State Park",
+          "Natchez Trace State Park",
+          "Tupelo, Mississippi",
+          "Naval Outlying Field Spencer",
+          "Toland, Pennsylvania",
+          "Jeff Davis County Courthouse (Texas)"
+        ],
+        "retrieved": [
+          "Marshall, Ohio",
+          "Trace State Park",
+          "Granville, Ohio",
+          "Canoe Creek State Park",
+          "East Fork State Park",
+          "Natchez Trace State Park",
+          "Tupelo, Mississippi",
+          "Naval Outlying Field Spencer",
+          "Toland, Pennsylvania",
+          "Jeff Davis County Courthouse (Texas)"
+        ],
+        "latency_s": 10.140140900039114,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1722,
+          "output_tokens": 141
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.8,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h014",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Bob Day is older than Lucy Gichuhi. Bob Day was born in 1952 (Source 6 and Source 9), while Lucy Gichuhi was born on 23 September 1962 (Source 1).",
+        "citations": [
+          "Lucy Gichuhi",
+          "Saint Lucy's Day",
+          "Lucy and Superman",
+          "The Story of Lucy Gault",
+          "Bob Weiskopf",
+          "Bob Day (disambiguation)",
+          "Ramblin' Gamblin' Man",
+          "Bob Day Afternoon",
+          "Bob Day",
+          "The Allisons"
+        ],
+        "retrieved": [
+          "Lucy Gichuhi",
+          "Saint Lucy's Day",
+          "Lucy and Superman",
+          "The Story of Lucy Gault",
+          "Bob Weiskopf",
+          "Bob Day (disambiguation)",
+          "Ramblin' Gamblin' Man",
+          "Bob Day Afternoon",
+          "Bob Day",
+          "The Allisons"
+        ],
+        "latency_s": 9.889940400025807,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1200,
+          "output_tokens": 57
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h015",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the constitutional union (Austria-Hungary) existed until 1918, when it collapsed as a result of defeat in World War I.",
+        "citations": [
+          "List of World War I flying aces from Hungary",
+          "List of World War I flying aces from Austria",
+          "List of World War I Slovak flying aces",
+          "Austria-Hungary",
+          "House of Lords (Austria)",
+          "Austrian Empire",
+          "Principality of Transylvania (1711\u20131867)",
+          "George Molnar",
+          "Powers: A Study in Metaphysics",
+          "Japanese Instrument of Surrender"
+        ],
+        "retrieved": [
+          "List of World War I flying aces from Hungary",
+          "List of World War I flying aces from Austria",
+          "List of World War I Slovak flying aces",
+          "Austria-Hungary",
+          "House of Lords (Austria)",
+          "Austrian Empire",
+          "Principality of Transylvania (1711\u20131867)",
+          "George Molnar",
+          "Powers: A Study in Metaphysics",
+          "Japanese Instrument of Surrender"
+        ],
+        "latency_s": 9.95351300004404,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1629,
+          "output_tokens": 35
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h016",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the keychain RFID device (Speedpass) was originally developed by Verifone, which is headquartered in **San Jose, California**.",
+        "citations": [
+          "Speedpass",
+          "Lou Malnati's Pizzeria",
+          "ACI Worldwide",
+          "No More Woof",
+          "Verifone",
+          "USA Technologies",
+          "Electronic Payment Services",
+          "PAX Technology",
+          "Paytm",
+          "Alfa DiskFax"
+        ],
+        "retrieved": [
+          "Speedpass",
+          "Lou Malnati's Pizzeria",
+          "ACI Worldwide",
+          "No More Woof",
+          "Verifone",
+          "USA Technologies",
+          "Electronic Payment Services",
+          "PAX Technology",
+          "Paytm",
+          "Alfa DiskFax"
+        ],
+        "latency_s": 10.443885599961504,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1342,
+          "output_tokens": 32
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h017",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Nathaniel Starbuck is a fictional character created by author Bernard Cornwell, and there is no mention in the sources of a conflict involving Bernard Cornwell himself, nor a conflict that they have in common.",
+        "citations": [
+          "Nathaniel Starbuck",
+          "The Starbuck Chronicles",
+          "Faulconer County",
+          "Bernard Cornwell",
+          "Sharpe's Christmas",
+          "Sharpe's Christmas (story collection)",
+          "Sharpe's Ransom",
+          "Sharpe's Peril",
+          "Sharpe's Challenge",
+          "The Fort (novel)"
+        ],
+        "retrieved": [
+          "Nathaniel Starbuck",
+          "The Starbuck Chronicles",
+          "Faulconer County",
+          "Bernard Cornwell",
+          "Sharpe's Christmas",
+          "Sharpe's Christmas (story collection)",
+          "Sharpe's Ransom",
+          "Sharpe's Peril",
+          "Sharpe's Challenge",
+          "The Fort (novel)"
+        ],
+        "latency_s": 9.027807599981315,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1484,
+          "output_tokens": 46
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h018",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Big Pig had more members. An early line-up of Big Pig included seven members (Sherine, Tony Antonaides, Neil Baker, Nick Disbray, Tim Rosewarne, Adrian Scaglione, and Oleh Witer) [Source 5], while Blur consists of four members (Damon Albarn, Graham Coxon, Alex James, and Dave Rowntree) [Source 7].",
+        "citations": [
+          "Pig wrestling",
+          "Big Pig Jig",
+          "Big Pig Gig",
+          "Jach'a Khuchi",
+          "Big Pig",
+          "WPIG",
+          "Blur (band)",
+          "Sherine Abeyratne",
+          "Big on Love",
+          "Bonk (album)"
+        ],
+        "retrieved": [
+          "Pig wrestling",
+          "Big Pig Jig",
+          "Big Pig Gig",
+          "Jach'a Khuchi",
+          "Big Pig",
+          "WPIG",
+          "Blur (band)",
+          "Sherine Abeyratne",
+          "Big on Love",
+          "Bonk (album)"
+        ],
+        "latency_s": 8.187266699969769,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1302,
+          "output_tokens": 90
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h019",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no mention of the year the prison where William Penn wrote *No Cross, No Crown* (the Tower of London) stopped being used as a prison.",
+        "citations": [
+          "No Cross, No Crown",
+          "William Penn High School (Delaware)",
+          "Li Zhusheng",
+          "Camptown Historic District",
+          "Province of Pennsylvania",
+          "William Penn University",
+          "Manor of Gilberts",
+          "William Penn Landing Site",
+          "Zak Penn",
+          "Mellon Square"
+        ],
+        "retrieved": [
+          "No Cross, No Crown",
+          "William Penn High School (Delaware)",
+          "Li Zhusheng",
+          "Camptown Historic District",
+          "Province of Pennsylvania",
+          "William Penn University",
+          "Manor of Gilberts",
+          "William Penn Landing Site",
+          "Zak Penn",
+          "Mellon Square"
+        ],
+        "latency_s": 10.230286499951035,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1265,
+          "output_tokens": 39
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h020",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Joan Jett (Joan Marie Larkin) and Kenny Laguna founded Blackheart Records, which acted as a boutique distribution outlet for independent labels from 1998 to 2000 (and distributed releases such as Mercury Records via Blackheart Records).",
+        "citations": [
+          "Joan Jett",
+          "Blackheart Records",
+          "No Apologies (The Eyeliners album)",
+          "I Want Candy (album)",
+          "Veteranz' Day",
+          "Joan Azrack",
+          "Joan Dunlop",
+          "Bethnal",
+          "Joan Sawicki",
+          "Gallo Record Company"
+        ],
+        "retrieved": [
+          "Joan Jett",
+          "Blackheart Records",
+          "No Apologies (The Eyeliners album)",
+          "I Want Candy (album)",
+          "Veteranz' Day",
+          "Joan Azrack",
+          "Joan Dunlop",
+          "Bethnal",
+          "Joan Sawicki",
+          "Gallo Record Company"
+        ],
+        "latency_s": 10.568368999985978,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1132,
+          "output_tokens": 57
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h021",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no information about what team Robbie Keane played for after Inter Milan.",
+        "citations": [
+          "2000\u201301 Inter Milan season",
+          "Robbie Keane",
+          "Luis Su\u00e1rez (footballer, born 1935)",
+          "List of Inter Milan managers",
+          "List of Inter Milan players",
+          "Inter Milan in European football",
+          "List of Inter Milan players (25\u201399 appearances)",
+          "Camillo Achilli",
+          "List of Inter Milan honours",
+          "Trofeo Pirelli"
+        ],
+        "retrieved": [
+          "2000\u201301 Inter Milan season",
+          "Robbie Keane",
+          "Luis Su\u00e1rez (footballer, born 1935)",
+          "List of Inter Milan managers",
+          "List of Inter Milan players",
+          "Inter Milan in European football",
+          "List of Inter Milan players (25\u201399 appearances)",
+          "Camillo Achilli",
+          "List of Inter Milan honours",
+          "Trofeo Pirelli"
+        ],
+        "latency_s": 11.37080859998241,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 2014,
+          "output_tokens": 21
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h022",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Gallery is older. Gallery arose in the 1970s (Source 2), whereas Dime Magazine began circulation in 2001 (Source 1).",
+        "citations": [
+          "Dime Magazine",
+          "Gallery (magazine)",
+          "Vanguard (magazine)",
+          "The Little Review Gallery",
+          "Dime novel",
+          "Linda Duvall",
+          "H. Bedford-Jones",
+          "C24 Gallery",
+          "Leggere Donna",
+          "Pluck and Luck"
+        ],
+        "retrieved": [
+          "Dime Magazine",
+          "Gallery (magazine)",
+          "Vanguard (magazine)",
+          "The Little Review Gallery",
+          "Dime novel",
+          "Linda Duvall",
+          "H. Bedford-Jones",
+          "C24 Gallery",
+          "Leggere Donna",
+          "Pluck and Luck"
+        ],
+        "latency_s": 10.428386399988085,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1643,
+          "output_tokens": 41
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h023",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, **Medinilla** is the genus that expands to the Pacific Ocean islands (specifically the western Pacific Ocean islands, as noted in Source 1). Source 9 does not mention Pacific Ocean islands for *Osteomeles*.",
+        "citations": [
+          "Medinilla",
+          "Cyrtomium",
+          "Novaculichthys taeniourus",
+          "Pacific Ocean theater of World War II",
+          "Partula (gastropod)",
+          "Anatahan",
+          "Gouania",
+          "Pterocarpus indicus",
+          "Osteomeles",
+          "Codiaeum variegatum"
+        ],
+        "retrieved": [
+          "Medinilla",
+          "Cyrtomium",
+          "Novaculichthys taeniourus",
+          "Pacific Ocean theater of World War II",
+          "Partula (gastropod)",
+          "Anatahan",
+          "Gouania",
+          "Pterocarpus indicus",
+          "Osteomeles",
+          "Codiaeum variegatum"
+        ],
+        "latency_s": 9.893292899942026,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1167,
+          "output_tokens": 51
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h024",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the hometown of Pharaohe Monch is Queens, New York.",
+        "citations": [
+          "Pharoahe Monch",
+          "Duck Down Music",
+          "Damage (Pharoahe Monch song)",
+          "W.A.R. (We Are Renegades)",
+          "Desire (Pharoahe Monch album)",
+          "Hometown Girl",
+          "Don't Cheat in Our Hometown",
+          "Don Neilson",
+          "Tammy Graham",
+          "Shabaam Sahdeeq"
+        ],
+        "retrieved": [
+          "Pharoahe Monch",
+          "Duck Down Music",
+          "Damage (Pharoahe Monch song)",
+          "W.A.R. (We Are Renegades)",
+          "Desire (Pharoahe Monch album)",
+          "Hometown Girl",
+          "Don't Cheat in Our Hometown",
+          "Don Neilson",
+          "Tammy Graham",
+          "Shabaam Sahdeeq"
+        ],
+        "latency_s": 10.343182199983858,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1888,
+          "output_tokens": 21
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h025",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no film mentioned that both stars Rose McGowan and features Earl McGraw's daughter.",
+        "citations": [
+          "Earl and Edgar McGraw",
+          "Dead Awake (2010 film)",
+          "The Pastor's Wife (film)",
+          "Conan the Barbarian (2011 film)",
+          "Devil in the Flesh (1998 film)",
+          "Scream (1996 film)",
+          "Emotional Technology",
+          "The Doom Generation",
+          "Paige Matthews",
+          "Deadfall (1993 film)"
+        ],
+        "retrieved": [
+          "Earl and Edgar McGraw",
+          "Dead Awake (2010 film)",
+          "The Pastor's Wife (film)",
+          "Conan the Barbarian (2011 film)",
+          "Devil in the Flesh (1998 film)",
+          "Scream (1996 film)",
+          "Emotional Technology",
+          "The Doom Generation",
+          "Paige Matthews",
+          "Deadfall (1993 film)"
+        ],
+        "latency_s": 9.75787810003385,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1477,
+          "output_tokens": 24
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h026",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Party of Syrian Unity was established in the wake of the Balfour Declaration and the November 23, 1917 publication by the Bolsheviks of the secret May 1916 Sykes-Picot Agreement between Britain and France.",
+        "citations": [
+          "Declaration to the Seven",
+          "Damascus Declaration",
+          "Statement of 1000",
+          "Communist Labour Party (Syria)",
+          "Syrian Emergency Task Force",
+          "Iraq Inquiry",
+          "Retraction (disambiguation)",
+          "Retraction",
+          "Mainstream Science on Intelligence",
+          "Balfour Declaration"
+        ],
+        "retrieved": [
+          "Declaration to the Seven",
+          "Damascus Declaration",
+          "Statement of 1000",
+          "Communist Labour Party (Syria)",
+          "Syrian Emergency Task Force",
+          "Iraq Inquiry",
+          "Retraction (disambiguation)",
+          "Retraction",
+          "Mainstream Science on Intelligence",
+          "Balfour Declaration"
+        ],
+        "latency_s": 10.44474970002193,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1437,
+          "output_tokens": 56
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h027",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both Kazuyuki Fujita and Gilbert Yvel share the profession of being a mixed martial artist.",
+        "citations": [
+          "Kazuyuki Fujita",
+          "Gilbert Yvel",
+          "Nurse stereotypes",
+          "Gilbert of Glenluce",
+          "Legal Profession Admission Board",
+          "Ivan Hippolyte",
+          "Convention (meeting)",
+          "Chris Dolman",
+          "List of Canadian tornadoes and tornado outbreaks",
+          "Cognitive authority"
+        ],
+        "retrieved": [
+          "Kazuyuki Fujita",
+          "Gilbert Yvel",
+          "Nurse stereotypes",
+          "Gilbert of Glenluce",
+          "Legal Profession Admission Board",
+          "Ivan Hippolyte",
+          "Convention (meeting)",
+          "Chris Dolman",
+          "List of Canadian tornadoes and tornado outbreaks",
+          "Cognitive authority"
+        ],
+        "latency_s": 10.178300100029446,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1746,
+          "output_tokens": 25
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.8,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h028",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Umi-a-Liloa inherited religious authority of Hawai'i whose line is traced, unbroken to Hawaiian \"creation\".",
+        "citations": [
+          "Umi-a-Liloa",
+          "Cognitive authority",
+          "Faith and rationality",
+          "Al-Jafr (book)",
+          "North East Combined Authority",
+          "Momolianism",
+          "Leprosy stigma",
+          "Evolutionism",
+          "Lori Jakiela",
+          "Central Marin Police Authority"
+        ],
+        "retrieved": [
+          "Umi-a-Liloa",
+          "Cognitive authority",
+          "Faith and rationality",
+          "Al-Jafr (book)",
+          "North East Combined Authority",
+          "Momolianism",
+          "Leprosy stigma",
+          "Evolutionism",
+          "Lori Jakiela",
+          "Central Marin Police Authority"
+        ],
+        "latency_s": 13.41451680008322,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1931,
+          "output_tokens": 32
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h029",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the term snake eyes is used in the casino game of craps, which uses dice as its game pieces.",
+        "citations": [
+          "Snake eyes",
+          "Pichenotte",
+          "Connect 4x4",
+          "Game piece (music)",
+          "Ugolki",
+          "Snake Eyes (G.I. Joe)",
+          "Xu Feng (album)",
+          "Operation Snake Eyes",
+          "Storm Shadow (G.I. Joe)",
+          "Craps"
+        ],
+        "retrieved": [
+          "Snake eyes",
+          "Pichenotte",
+          "Connect 4x4",
+          "Game piece (music)",
+          "Ugolki",
+          "Snake Eyes (G.I. Joe)",
+          "Xu Feng (album)",
+          "Operation Snake Eyes",
+          "Storm Shadow (G.I. Joe)",
+          "Craps"
+        ],
+        "latency_s": 9.691100500058383,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1624,
+          "output_tokens": 28
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.5,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h030",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "No. While the Battle of Stones River was fought in the 19th century (from December 31, 1862, to January 2, 1863), the Battle of the Ch'ongch'on River took place in 1950.",
+        "citations": [
+          "Battle of the Ch'ongch'on River",
+          "Battle of Stones River",
+          "Battle of Berestechko",
+          "Joseph L. Follett",
+          "Battle of the Burbia River",
+          "Battle of Glendale (Skye)",
+          "Umba River (Tanzania)",
+          "Collins Ferry Historic District",
+          "Battle of Yao (Japan)",
+          "Battle of Calabria"
+        ],
+        "retrieved": [
+          "Battle of the Ch'ongch'on River",
+          "Battle of Stones River",
+          "Battle of Berestechko",
+          "Joseph L. Follett",
+          "Battle of the Burbia River",
+          "Battle of Glendale (Skye)",
+          "Umba River (Tanzania)",
+          "Collins Ferry Historic District",
+          "Battle of Yao (Japan)",
+          "Battle of Calabria"
+        ],
+        "latency_s": 11.263950200052932,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1904,
+          "output_tokens": 61
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h031",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Charles Barkley changed his jersey number to #32 in honor of Magic Johnson [Source 1], who was born in 1959 [Source 9].",
+        "citations": [
+          "1991\u201392 Philadelphia 76ers season",
+          "Charles Barkley (disambiguation)",
+          "Larry Kelley",
+          "Charles William Barkley",
+          "Number (sports)",
+          "I May Be Wrong but I Doubt It",
+          "Greg Christy",
+          "1992\u201393 Phoenix Suns season",
+          "Magic Johnson",
+          "Lou Silver"
+        ],
+        "retrieved": [
+          "1991\u201392 Philadelphia 76ers season",
+          "Charles Barkley (disambiguation)",
+          "Larry Kelley",
+          "Charles William Barkley",
+          "Number (sports)",
+          "I May Be Wrong but I Doubt It",
+          "Greg Christy",
+          "1992\u201393 Phoenix Suns season",
+          "Magic Johnson",
+          "Lou Silver"
+        ],
+        "latency_s": 10.351502800011076,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1690,
+          "output_tokens": 40
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h032",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both Chris Jericho and Gary Barlow share the profession of being a **musician** (as well as being involved in songwriting/singing).",
+        "citations": [
+          "Music Music Music",
+          "Gary Barlow: On Her Majesty's Service",
+          "Fozzy",
+          "Chris Jericho",
+          "Gary Barlow: In Concert",
+          "Nurse stereotypes",
+          "Let Me Go (Gary Barlow song)",
+          "Legal Profession Admission Board",
+          "Gary Barlow",
+          "List of songs recorded by Gary Barlow"
+        ],
+        "retrieved": [
+          "Music Music Music",
+          "Gary Barlow: On Her Majesty's Service",
+          "Fozzy",
+          "Chris Jericho",
+          "Gary Barlow: In Concert",
+          "Nurse stereotypes",
+          "Let Me Go (Gary Barlow song)",
+          "Legal Profession Admission Board",
+          "Gary Barlow",
+          "List of songs recorded by Gary Barlow"
+        ],
+        "latency_s": 10.341164799989201,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1624,
+          "output_tokens": 34
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h033",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the British racing driver who raced for 7 different teams and won the 1999 European Grand Prix is Johnny Herbert.",
+        "citations": [
+          "Luca Badoer",
+          "Johnny Herbert",
+          "Peter Westbury",
+          "Stewart Grand Prix",
+          "Graham Whitehead",
+          "Klenk",
+          "1923 Grand Prix season",
+          "Robin Montgomerie-Charrington",
+          "Valencia Street Circuit",
+          "2012 European Grand Prix"
+        ],
+        "retrieved": [
+          "Luca Badoer",
+          "Johnny Herbert",
+          "Peter Westbury",
+          "Stewart Grand Prix",
+          "Graham Whitehead",
+          "Klenk",
+          "1923 Grand Prix season",
+          "Robin Montgomerie-Charrington",
+          "Valencia Street Circuit",
+          "2012 European Grand Prix"
+        ],
+        "latency_s": 10.236544799990952,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1739,
+          "output_tokens": 32
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h034",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources:\n\n* **The Ready Set** is the professional name of Jordan Mark Witzigreuter, an American singer-songwriter from Fort Wayne, Indiana, who is the lead vocalist and sole member of the act (using a backup band on tour). \n* **Cell** refers to a New York-based band formed in 1990 and split around 1995, often tagged as grunge, college rock, or alternative. (Additionally, the sources discuss biological \"cells\" in the context of developmental biology and the retinoblastoma protein, but \"Cell\" specifically names the band in Source 10).",
+        "citations": [
+          "Cell fate determination",
+          "Retinoblastoma protein",
+          "Ready Set Roll",
+          "The Ready Set",
+          "Ready Set Go! (album)",
+          "Ready Ready Set Go",
+          "Fight for Something Tour",
+          "I Will Be Nothing Without Your Love",
+          "IBM 2997",
+          "Cell (American band)"
+        ],
+        "retrieved": [
+          "Cell fate determination",
+          "Retinoblastoma protein",
+          "Ready Set Roll",
+          "The Ready Set",
+          "Ready Set Go! (album)",
+          "Ready Ready Set Go",
+          "Fight for Something Tour",
+          "I Will Be Nothing Without Your Love",
+          "IBM 2997",
+          "Cell (American band)"
+        ],
+        "latency_s": 11.062006799969822,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1709,
+          "output_tokens": 134
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h035",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Los Angeles Clippers acquired player Doc Rivers from the Atlanta Hawks during the 1991\u201392 offseason (Source 3). Doc Rivers was born in 1961 (Source 5).",
+        "citations": [
+          "Vladimir Radmanovi\u0107",
+          "Josh Powell",
+          "1991\u201392 Los Angeles Clippers season",
+          "Quin Snyder",
+          "Doc Rivers",
+          "Los Angeles Clippers",
+          "List of Los Angeles Clippers seasons",
+          "List of Los Angeles Clippers head coaches",
+          "Lakers\u2013Clippers rivalry",
+          "2011 NBA All-Star Game"
+        ],
+        "retrieved": [
+          "Vladimir Radmanovi\u0107",
+          "Josh Powell",
+          "1991\u201392 Los Angeles Clippers season",
+          "Quin Snyder",
+          "Doc Rivers",
+          "Los Angeles Clippers",
+          "List of Los Angeles Clippers seasons",
+          "List of Los Angeles Clippers head coaches",
+          "Lakers\u2013Clippers rivalry",
+          "2011 NBA All-Star Game"
+        ],
+        "latency_s": 9.829986999975517,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1952,
+          "output_tokens": 49
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h036",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the pirate who stole Jean Fantin's ship along with Robert Culliford was William Kidd (Source 1), but his nationality is not mentioned in the sources.",
+        "citations": [
+          "Jean Fantin",
+          "Robert Culliford",
+          "John Swann (pirate)",
+          "Joseph Wheeler (pirate)",
+          "Ralph Stout",
+          "Evan Jones (pirate)",
+          "Robert Culliford (MP)",
+          "James Kelly (pirate)",
+          "Samuel Burgess",
+          "Music Music Music"
+        ],
+        "retrieved": [
+          "Jean Fantin",
+          "Robert Culliford",
+          "John Swann (pirate)",
+          "Joseph Wheeler (pirate)",
+          "Ralph Stout",
+          "Evan Jones (pirate)",
+          "Robert Culliford (MP)",
+          "James Kelly (pirate)",
+          "Samuel Burgess",
+          "Music Music Music"
+        ],
+        "latency_s": 4.070855500060134,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1026,
+          "output_tokens": 40
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h037",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the US battleship is the USS \"Missouri\" (BB-63).",
+        "citations": [
+          "USS Missouri (BB-63)",
+          "List of territories occupied by Imperial Japan",
+          "Japanese Instrument of Surrender",
+          "Battleships in World War II",
+          "Siege of Breslau",
+          "Surrender of Japan",
+          "Potsdam Declaration",
+          "Victory over Japan Day",
+          "General Quarters (rules)",
+          "Under Siege"
+        ],
+        "retrieved": [
+          "USS Missouri (BB-63)",
+          "List of territories occupied by Imperial Japan",
+          "Japanese Instrument of Surrender",
+          "Battleships in World War II",
+          "Siege of Breslau",
+          "Surrender of Japan",
+          "Potsdam Declaration",
+          "Victory over Japan Day",
+          "General Quarters (rules)",
+          "Under Siege"
+        ],
+        "latency_s": 5.959359800093807,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1696,
+          "output_tokens": 21
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.5,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h038",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Carl Edwards, who is known for doing backflips off his car, lost the 2009 NASCAR Nationwide Series championship to Kyle Busch.",
+        "citations": [
+          "Carl Edwards",
+          "Alex Garc\u00eda (racing driver)",
+          "Kyle Busch",
+          "Justin Allgaier",
+          "Justin Hobgood",
+          "Dwayne Leik",
+          "2013 NASCAR Nationwide Series",
+          "Diamond Ridge Motorsports",
+          "Klenk",
+          "2009 NASCAR Nationwide Series"
+        ],
+        "retrieved": [
+          "Carl Edwards",
+          "Alex Garc\u00eda (racing driver)",
+          "Kyle Busch",
+          "Justin Allgaier",
+          "Justin Hobgood",
+          "Dwayne Leik",
+          "2013 NASCAR Nationwide Series",
+          "Diamond Ridge Motorsports",
+          "Klenk",
+          "2009 NASCAR Nationwide Series"
+        ],
+        "latency_s": 9.808108299970627,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1737,
+          "output_tokens": 36
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h039",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources:\n- Phil Rosen was a film director and cinematographer. \n- Delmer Daves was a screenwriter, director, and producer. \n\nTherefore, Delmer Daves has a broader scope of profession encompassing three roles (screenwriter, director, and producer), compared to Phil Rosen's two roles (film director and cinematographer).",
+        "citations": [
+          "Phil Rosen",
+          "Delmer Daves",
+          "The Hanging Tree",
+          "Drum Beat",
+          "Convention (meeting)",
+          "Nurse stereotypes",
+          "Dark Passage (film)",
+          "Shipmates Forever",
+          "The Petrified Forest",
+          "Parrish (film)"
+        ],
+        "retrieved": [
+          "Phil Rosen",
+          "Delmer Daves",
+          "The Hanging Tree",
+          "Drum Beat",
+          "Convention (meeting)",
+          "Nurse stereotypes",
+          "Dark Passage (film)",
+          "Shipmates Forever",
+          "The Petrified Forest",
+          "Parrish (film)"
+        ],
+        "latency_s": 11.057751100044698,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1170,
+          "output_tokens": 73
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.8,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h040",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Phil Bennett served as the head football coach at Southern Methodist University (SMU) and also played the role of defensive coordinator for the Arizona State Sun Devils.",
+        "citations": [
+          "1958 Arizona State Sun Devils football team",
+          "1951 Arizona State Sun Devils football team",
+          "1956 Arizona State Sun Devils football team",
+          "1954 Arizona State Sun Devils football team",
+          "1955 Arizona State Sun Devils football team",
+          "1952 Arizona State Sun Devils football team",
+          "1961 Arizona State Sun Devils football team",
+          "Arizona State Sun Devils football",
+          "Phil Bennett (American football)",
+          "SMU Mustangs football under Mike Cavan"
+        ],
+        "retrieved": [
+          "1958 Arizona State Sun Devils football team",
+          "1951 Arizona State Sun Devils football team",
+          "1956 Arizona State Sun Devils football team",
+          "1954 Arizona State Sun Devils football team",
+          "1955 Arizona State Sun Devils football team",
+          "1952 Arizona State Sun Devils football team",
+          "1961 Arizona State Sun Devils football team",
+          "Arizona State Sun Devils football",
+          "Phil Bennett (American football)",
+          "SMU Mustangs football under Mike Cavan"
+        ],
+        "latency_s": 10.108611300005578,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1780,
+          "output_tokens": 37
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h041",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Mississippi University for Women v. Hogan",
+        "citations": [
+          "Mississippi University for Women v. Hogan",
+          "Berghuis v. Thompkins",
+          "Whole Woman's Health v. Hellerstedt",
+          "Van Staphorst v. Maryland",
+          "Summers v. Earth Island Institute",
+          "United States v. Quiver",
+          "V.L. v. E.L.",
+          "Chy Lung v. Freeman",
+          "Hirabayashi v. United States",
+          "Criminal law in the Waite Court"
+        ],
+        "retrieved": [
+          "Mississippi University for Women v. Hogan",
+          "Berghuis v. Thompkins",
+          "Whole Woman's Health v. Hellerstedt",
+          "Van Staphorst v. Maryland",
+          "Summers v. Earth Island Institute",
+          "United States v. Quiver",
+          "V.L. v. E.L.",
+          "Chy Lung v. Freeman",
+          "Hirabayashi v. United States",
+          "Criminal law in the Waite Court"
+        ],
+        "latency_s": 10.21298999991268,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1824,
+          "output_tokens": 7
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.8,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h042",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no mention of \"MIAL\" or any person recognized by it. Therefore, the information to answer this question is not present in the sources.",
+        "citations": [
+          "Camille Zamora",
+          "Leontyne Price",
+          "Fred H. Hale Sr.",
+          "Myrna Sharlow",
+          "Mamzer",
+          "Apprentice Adept",
+          "Nabi Tajima",
+          "Les Irwin",
+          "Edwin L. Mechem",
+          "Derrill Osborn"
+        ],
+        "retrieved": [
+          "Camille Zamora",
+          "Leontyne Price",
+          "Fred H. Hale Sr.",
+          "Myrna Sharlow",
+          "Mamzer",
+          "Apprentice Adept",
+          "Nabi Tajima",
+          "Les Irwin",
+          "Edwin L. Mechem",
+          "Derrill Osborn"
+        ],
+        "latency_s": 10.449257400003262,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1441,
+          "output_tokens": 37
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h043",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Noori was formed first (in 1996, according to Source 5), while Test Icicles was formed in 2004 (according to Sources 2 and 8).",
+        "citations": [
+          "NLS Crew",
+          "Test Icicles",
+          "Boa vs. Python (song)",
+          "For Screening Purposes Only",
+          "Noori",
+          "Circle. Square. Triangle",
+          "Dig Your Own Grave",
+          "Rory Attwell",
+          "The Ordinary Boys (album)",
+          "Dev Hynes"
+        ],
+        "retrieved": [
+          "NLS Crew",
+          "Test Icicles",
+          "Boa vs. Python (song)",
+          "For Screening Purposes Only",
+          "Noori",
+          "Circle. Square. Triangle",
+          "Dig Your Own Grave",
+          "Rory Attwell",
+          "The Ordinary Boys (album)",
+          "Dev Hynes"
+        ],
+        "latency_s": 8.4913645000197,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1032,
+          "output_tokens": 47
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h044",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Timothy Oulton retails his products through **Restoration Hardware** (also known as RH), which is headquartered in Corte Madera.",
+        "citations": [
+          "Timothy Oulton",
+          "Restoration Hardware",
+          "Town Center at Corte Madera",
+          "Corte Madera Creek (Marin County, California)",
+          "The Village at Corte Madera",
+          "Rancho Corte Madera del Presidio",
+          "Arroyo Corte Madera del Presidio",
+          "Marin Country Day School",
+          "USA Technologies",
+          "Central Marin Police Authority"
+        ],
+        "retrieved": [
+          "Timothy Oulton",
+          "Restoration Hardware",
+          "Town Center at Corte Madera",
+          "Corte Madera Creek (Marin County, California)",
+          "The Village at Corte Madera",
+          "Rancho Corte Madera del Presidio",
+          "Arroyo Corte Madera del Presidio",
+          "Marin Country Day School",
+          "USA Technologies",
+          "Central Marin Police Authority"
+        ],
+        "latency_s": 10.461727800080553,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1121,
+          "output_tokens": 31
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h045",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the historic tugboat *Catawissa* was located in Waterford, New York (Source 1). The population of the town of Waterford was 8,515 at the 2000 census (Source 7).",
+        "citations": [
+          "Catawissa (tugboat)",
+          "Warrensburg, New York",
+          "K. Whittelsey (tugboat)",
+          "Mogollon, New Mexico",
+          "Taifa, Accra",
+          "Southern Columbia Area School District",
+          "Waterford, New York",
+          "East Grinstead",
+          "Jeff Davis County Courthouse (Texas)",
+          "Anc\u00f3n, Panama"
+        ],
+        "retrieved": [
+          "Catawissa (tugboat)",
+          "Warrensburg, New York",
+          "K. Whittelsey (tugboat)",
+          "Mogollon, New Mexico",
+          "Taifa, Accra",
+          "Southern Columbia Area School District",
+          "Waterford, New York",
+          "East Grinstead",
+          "Jeff Davis County Courthouse (Texas)",
+          "Anc\u00f3n, Panama"
+        ],
+        "latency_s": 10.303024900029413,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 2155,
+          "output_tokens": 55
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h046",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Water Night was composed by Eric Whitacre.",
+        "citations": [
+          "Cosmopolitan Life",
+          "Michael Colina",
+          "Water Night",
+          "Eric Whitacre",
+          "John Congleton",
+          "Nick Raskulinecz",
+          "What the Water Gave Me (song)",
+          "Kam Parker",
+          "A Night at the Roxbury",
+          "Paul Nelson (musician)"
+        ],
+        "retrieved": [
+          "Cosmopolitan Life",
+          "Michael Colina",
+          "Water Night",
+          "Eric Whitacre",
+          "John Congleton",
+          "Nick Raskulinecz",
+          "What the Water Gave Me (song)",
+          "Kam Parker",
+          "A Night at the Roxbury",
+          "Paul Nelson (musician)"
+        ],
+        "latency_s": 9.62285659997724,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1152,
+          "output_tokens": 9
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h047",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the publisher (Bennett Cerf) made appearances in the panel game show \"What's My Line?\".",
+        "citations": [
+          "Twenty Two (The Twilight Zone)",
+          "Many, Many Monkeys",
+          "In His Image",
+          "Time Enough at Last",
+          "Bennett Cerf",
+          "Night Gallery",
+          "Panel show",
+          "Twilight Zone (Golden Earring song)",
+          "The Twilight Zone Tower of Terror",
+          "Wipeout (2008 U.S. game show)"
+        ],
+        "retrieved": [
+          "Twenty Two (The Twilight Zone)",
+          "Many, Many Monkeys",
+          "In His Image",
+          "Time Enough at Last",
+          "Bennett Cerf",
+          "Night Gallery",
+          "Panel show",
+          "Twilight Zone (Golden Earring song)",
+          "The Twilight Zone Tower of Terror",
+          "Wipeout (2008 U.S. game show)"
+        ],
+        "latency_s": 10.413356599980034,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1647,
+          "output_tokens": 27
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h048",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, The Voyage is located at Holiday World & Splashin' Safari, a theme park that is divided into four sections.",
+        "citations": [
+          "Holiday World &amp; Splashin' Safari",
+          "The Voyage (roller coaster)",
+          "List of Kings Island attractions",
+          "Wooden roller coaster",
+          "Hades 360",
+          "Giant Dipper (Belmont Park)",
+          "Hoosier Hurricane",
+          "Outlaw Run",
+          "White Cyclone",
+          "Hurricane: Category 5"
+        ],
+        "retrieved": [
+          "Holiday World &amp; Splashin' Safari",
+          "The Voyage (roller coaster)",
+          "List of Kings Island attractions",
+          "Wooden roller coaster",
+          "Hades 360",
+          "Giant Dipper (Belmont Park)",
+          "Hoosier Hurricane",
+          "Outlaw Run",
+          "White Cyclone",
+          "Hurricane: Category 5"
+        ],
+        "latency_s": 10.547389200073667,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1916,
+          "output_tokens": 29
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h049",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, while at the University of Michigan, Louis Smith played with Miles Davis and Thad Jones, both of whom are described as American jazz trumpeters, bandleaders, and composers.",
+        "citations": [
+          "Louis Smith (musician)",
+          "Thad Jones",
+          "Miles Davis",
+          "Black Beauty: Miles Davis at Fillmore West",
+          "Agharta (album)",
+          "Here Comes Louis Smith",
+          "Don Ellis",
+          "Jack Johnson (album)",
+          "Ancestral Homeland",
+          "Marty Marsala"
+        ],
+        "retrieved": [
+          "Louis Smith (musician)",
+          "Thad Jones",
+          "Miles Davis",
+          "Black Beauty: Miles Davis at Fillmore West",
+          "Agharta (album)",
+          "Here Comes Louis Smith",
+          "Don Ellis",
+          "Jack Johnson (album)",
+          "Ancestral Homeland",
+          "Marty Marsala"
+        ],
+        "latency_s": 11.318595599965192,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1243,
+          "output_tokens": 41
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.6667,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h050",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Jimmy McNatt, nicknamed \"Scat,\" was a two-time All-American who led the Oklahoma Sooners (or the Oklahoma Sooners basketball team) to the first-ever NCAA Final Four in 1939.",
+        "citations": [
+          "Jimmy McNatt",
+          "Jack Harvey (basketball)",
+          "Ike Poole",
+          "Ed Koffenberger",
+          "Les Witte",
+          "Bennie Oosterbaan",
+          "Carey Spicer",
+          "Rufus Sisson",
+          "Cornell Green (defensive back)",
+          "1992\u201393 Phoenix Suns season"
+        ],
+        "retrieved": [
+          "Jimmy McNatt",
+          "Jack Harvey (basketball)",
+          "Ike Poole",
+          "Ed Koffenberger",
+          "Les Witte",
+          "Bennie Oosterbaan",
+          "Carey Spicer",
+          "Rufus Sisson",
+          "Cornell Green (defensive back)",
+          "1992\u201393 Phoenix Suns season"
+        ],
+        "latency_s": 10.238135699997656,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1785,
+          "output_tokens": 53
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h051",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the current coach of Werder Bremen (Alexander Nouri) played professionally for Werder Bremen, which is a German sports club.",
+        "citations": [
+          "Alexander Nouri",
+          "SV Werder Bremen",
+          "Frank Baumann (footballer)",
+          "Uwe Harttgen",
+          "Florian Bruns",
+          "Karl-Heinz Kamp",
+          "SV Werder Bremen II",
+          "2017\u201318 SV Werder Bremen season",
+          "2003\u201304 SV Werder Bremen season",
+          "Doc Rivers"
+        ],
+        "retrieved": [
+          "Alexander Nouri",
+          "SV Werder Bremen",
+          "Frank Baumann (footballer)",
+          "Uwe Harttgen",
+          "Florian Bruns",
+          "Karl-Heinz Kamp",
+          "SV Werder Bremen II",
+          "2017\u201318 SV Werder Bremen season",
+          "2003\u201304 SV Werder Bremen season",
+          "Doc Rivers"
+        ],
+        "latency_s": 11.064491500030272,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1059,
+          "output_tokens": 32
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h052",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Cecily Strong played the backup singer/dancer **Piper** in the sketch \"What Up with That\" (with the role of Pippa originally played by Nasim Pedrad).",
+        "citations": [
+          "Cecily Strong",
+          "What Up with That",
+          "Saturday Night Live",
+          "Wayne's World",
+          "Erik Marcisak",
+          "List of Saturday Night Live episodes",
+          "List of Saturday Night Live guests",
+          "A Night at the Roxbury",
+          "Saturday Night Live from Milano",
+          "SNL Studios"
+        ],
+        "retrieved": [
+          "Cecily Strong",
+          "What Up with That",
+          "Saturday Night Live",
+          "Wayne's World",
+          "Erik Marcisak",
+          "List of Saturday Night Live episodes",
+          "List of Saturday Night Live guests",
+          "A Night at the Roxbury",
+          "Saturday Night Live from Milano",
+          "SNL Studios"
+        ],
+        "latency_s": 12.502384999999776,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1752,
+          "output_tokens": 42
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h053",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both \"A Summer in the Cage\" and \"American Hardcore\" are documentary films.",
+        "citations": [
+          "A Summer in the Cage",
+          "Deadfall (1993 film)",
+          "When People Grow, People Go",
+          "Combat Zone Wrestling",
+          "All Ages: The Boston Hardcore Film",
+          "Punk's Not Dead (2007 film)",
+          "American Hardcore (film)",
+          "Hellfest (American music festival)",
+          "I Against I",
+          "Happy Campers (2001 film)"
+        ],
+        "retrieved": [
+          "A Summer in the Cage",
+          "Deadfall (1993 film)",
+          "When People Grow, People Go",
+          "Combat Zone Wrestling",
+          "All Ages: The Boston Hardcore Film",
+          "Punk's Not Dead (2007 film)",
+          "American Hardcore (film)",
+          "Hellfest (American music festival)",
+          "I Against I",
+          "Happy Campers (2001 film)"
+        ],
+        "latency_s": 10.44317189999856,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1569,
+          "output_tokens": 24
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h054",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Distribution of Industry Act 1950 was passed by the Labour government of Clement Attlee, but the sources do not provide the specific dates or time period when he was prime minister.",
+        "citations": [
+          "Gordon Bajnai",
+          "Deputy prime minister",
+          "Industry Act 1975",
+          "Distribution of Industry Act 1950",
+          "Prime Minister of Northern Ireland",
+          "Honours (Prevention of Abuses) Act 1925",
+          "Reindeer Act",
+          "Letters of last resort",
+          "Bush\u2013Aznar memo",
+          "Croatian presidential election, 2000"
+        ],
+        "retrieved": [
+          "Gordon Bajnai",
+          "Deputy prime minister",
+          "Industry Act 1975",
+          "Distribution of Industry Act 1950",
+          "Prime Minister of Northern Ireland",
+          "Honours (Prevention of Abuses) Act 1925",
+          "Reindeer Act",
+          "Letters of last resort",
+          "Bush\u2013Aznar memo",
+          "Croatian presidential election, 2000"
+        ],
+        "latency_s": 10.138101299991831,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1633,
+          "output_tokens": 45
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h055",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Emily Bergl starred in *Shameless*, which is set in Chicago.",
+        "citations": [
+          "Emily Bergl",
+          "Shameless (U.S. TV series)",
+          "Rachel Lang",
+          "Early Edition",
+          "Deltora Quest 1",
+          "Chasing Sleep",
+          "Emily Nelson",
+          "The Rage: Carrie 2",
+          "Happy Campers (2001 film)",
+          "Marblemedia"
+        ],
+        "retrieved": [
+          "Emily Bergl",
+          "Shameless (U.S. TV series)",
+          "Rachel Lang",
+          "Early Edition",
+          "Deltora Quest 1",
+          "Chasing Sleep",
+          "Emily Nelson",
+          "The Rage: Carrie 2",
+          "Happy Campers (2001 film)",
+          "Marblemedia"
+        ],
+        "latency_s": 9.49055300001055,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1605,
+          "output_tokens": 21
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h056",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the tournament is the **Premier League Darts** (referenced across multiple editions, such as the 2018 Premier League Darts, which is planned to end with the Play-Offs at The O2 Arena).",
+        "citations": [
+          "The O2 Arena",
+          "2017 Premier League Darts",
+          "2018 Premier League Darts",
+          "2016 Premier League Darts",
+          "2012 Premier League Darts",
+          "2013 Premier League Darts",
+          "2014 Premier League Darts",
+          "2015 Premier League Darts",
+          "PDC World Darts Championship",
+          "East Grinstead"
+        ],
+        "retrieved": [
+          "The O2 Arena",
+          "2017 Premier League Darts",
+          "2018 Premier League Darts",
+          "2016 Premier League Darts",
+          "2012 Premier League Darts",
+          "2013 Premier League Darts",
+          "2014 Premier League Darts",
+          "2015 Premier League Darts",
+          "PDC World Darts Championship",
+          "East Grinstead"
+        ],
+        "latency_s": 9.763331199996173,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1402,
+          "output_tokens": 52
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.75,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h057",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Sir Syed University of Engineering and Technology is named after a person (Sir Syed Ahmad Khan). There is no mention in the sources of Manhattan College being named after a person.",
+        "citations": [
+          "Sir Syed University of Engineering and Technology",
+          "Sir Syed College",
+          "Manhattan College",
+          "Thomas Walker Arnold",
+          "Sir Syed Government Girls College",
+          "Sir Syed Masjid",
+          "Sir Syed Sani Syed Ali Shah Bukhari",
+          "Cal Poly Pomona College of Engineering",
+          "Syed Mir Hassan",
+          "Syed Mahmood"
+        ],
+        "retrieved": [
+          "Sir Syed University of Engineering and Technology",
+          "Sir Syed College",
+          "Manhattan College",
+          "Thomas Walker Arnold",
+          "Sir Syed Government Girls College",
+          "Sir Syed Masjid",
+          "Sir Syed Sani Syed Ali Shah Bukhari",
+          "Cal Poly Pomona College of Engineering",
+          "Syed Mir Hassan",
+          "Syed Mahmood"
+        ],
+        "latency_s": 10.392842200002633,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1675,
+          "output_tokens": 41
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h058",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the formation year of the band (Gorgoroth) whose bassist (Ares) joined Arvas in 1996 is not mentioned. (Arvas itself was formed in 1993).",
+        "citations": [
+          "Arvas",
+          "Noori",
+          "Coldplay",
+          "Joe Raposo (bassist)",
+          "Herzog (band)",
+          "Modest Mouse",
+          "L7 discography",
+          "Patrick Bruders",
+          "INXS",
+          "Muzzle (band)"
+        ],
+        "retrieved": [
+          "Arvas",
+          "Noori",
+          "Coldplay",
+          "Joe Raposo (bassist)",
+          "Herzog (band)",
+          "Modest Mouse",
+          "L7 discography",
+          "Patrick Bruders",
+          "INXS",
+          "Muzzle (band)"
+        ],
+        "latency_s": 29.489660699968226,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 2190,
+          "output_tokens": 50
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h059",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no mention of who cared for Blondi, nor what sort of dog that person had.",
+        "citations": [
+          "Blondi",
+          "Martin Adolf Bormann",
+          "Albert Bormann",
+          "Martin Bormann",
+          "Religious views of Adolf Hitler",
+          "Hitler's Table Talk",
+          "Mass suicides in 1945 Nazi Germany",
+          "What the Water Gave Me (song)",
+          "Enabling Act of 1933",
+          "Vorbunker"
+        ],
+        "retrieved": [
+          "Blondi",
+          "Martin Adolf Bormann",
+          "Albert Bormann",
+          "Martin Bormann",
+          "Religious views of Adolf Hitler",
+          "Hitler's Table Talk",
+          "Mass suicides in 1945 Nazi Germany",
+          "What the Water Gave Me (song)",
+          "Enabling Act of 1933",
+          "Vorbunker"
+        ],
+        "latency_s": 10.853677800041623,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1512,
+          "output_tokens": 26
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h060",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, Operation Dragoon and the Battle of Cold Harbor were fought during two different wars. \n\nThe Battle of Cold Harbor was fought in 1864 during the American Civil War (Sources 1, 2, and 3). Operation Dragoon took place in August 1944 during World War II (Sources 4, 6, and 7).",
+        "citations": [
+          "Cold Harbor, Virginia",
+          "Terrence Begley",
+          "Battle of Cold Harbor",
+          "Battle of La Ciotat",
+          "Battle of Port Cros",
+          "Operation Dragoon",
+          "USS Augusta (CA-31)",
+          "Operation Ferdinand",
+          "Operation Romeo",
+          "2nd Parachute Brigade in Southern France"
+        ],
+        "retrieved": [
+          "Cold Harbor, Virginia",
+          "Terrence Begley",
+          "Battle of Cold Harbor",
+          "Battle of La Ciotat",
+          "Battle of Port Cros",
+          "Operation Dragoon",
+          "USS Augusta (CA-31)",
+          "Operation Ferdinand",
+          "Operation Romeo",
+          "2nd Parachute Brigade in Southern France"
+        ],
+        "latency_s": 5.420271800016053,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1281,
+          "output_tokens": 78
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h061",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Aadesh Shrivastava died from cancer.",
+        "citations": [
+          "Aadesh Shrivastava",
+          "Angaaray (1998 film)",
+          "Kash Aap Hamare Hote",
+          "Cecil Hunt",
+          "John Chapman (harness racing)",
+          "Kabhi Khushi Kabhie Gham...",
+          "Monty Sharma",
+          "Obadiah J. Barker",
+          "Robin Montgomerie-Charrington",
+          "Sa Re Ga Ma Pa Challenge 2009"
+        ],
+        "retrieved": [
+          "Aadesh Shrivastava",
+          "Angaaray (1998 film)",
+          "Kash Aap Hamare Hote",
+          "Cecil Hunt",
+          "John Chapman (harness racing)",
+          "Kabhi Khushi Kabhie Gham...",
+          "Monty Sharma",
+          "Obadiah J. Barker",
+          "Robin Montgomerie-Charrington",
+          "Sa Re Ga Ma Pa Challenge 2009"
+        ],
+        "latency_s": 10.031703000073321,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1293,
+          "output_tokens": 14
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.25,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h062",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the common ingredient to a Gimlet and Pink Gin is **gin** (specifically Plymouth Gin is mentioned for both).",
+        "citations": [
+          "Gimlet (cocktail)",
+          "Pink Gin",
+          "Gin",
+          "Bean sprout",
+          "List of sesame seed dishes",
+          "Bagoong monamon",
+          "Bagoong terong",
+          "Animal digest",
+          "Weisslacker",
+          "Potato doughnut"
+        ],
+        "retrieved": [
+          "Gimlet (cocktail)",
+          "Pink Gin",
+          "Gin",
+          "Bean sprout",
+          "List of sesame seed dishes",
+          "Bagoong monamon",
+          "Bagoong terong",
+          "Animal digest",
+          "Weisslacker",
+          "Potato doughnut"
+        ],
+        "latency_s": 10.440523799974471,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1359,
+          "output_tokens": 29
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.4,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h063",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both Tappi T\u00edkarrass and INXS played **rock** and **funk** music (Tappi T\u00edkarrass is described as a punk band that added elements of funk and rock [Source 1], and INXS was a rock band that developed a style including funk elements [Source 9]).",
+        "citations": [
+          "Tappi T\u00edkarrass",
+          "Miranda (album)",
+          "N\u00fdtt l\u00edf",
+          "Biti\u00f0 fast \u00ed viti\u00f0",
+          "Folk rock",
+          "Rave music",
+          "Kidandali",
+          "Disco polo",
+          "INXS",
+          "Steeltown (band)"
+        ],
+        "retrieved": [
+          "Tappi T\u00edkarrass",
+          "Miranda (album)",
+          "N\u00fdtt l\u00edf",
+          "Biti\u00f0 fast \u00ed viti\u00f0",
+          "Folk rock",
+          "Rave music",
+          "Kidandali",
+          "Disco polo",
+          "INXS",
+          "Steeltown (band)"
+        ],
+        "latency_s": 12.602992100059055,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1495,
+          "output_tokens": 69
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h064",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Celebrity Home Entertainment released the American Space Western animated series ***BraveStarr***.",
+        "citations": [
+          "COPS (animated TV series)",
+          "Noel C. Bloom",
+          "Celebrity Home Entertainment",
+          "BraveStarr",
+          "Sterling Entertainment Group",
+          "Locke the Superman",
+          "Magna Home Entertainment",
+          "The Fairies",
+          "Monster Force",
+          "Tottoi"
+        ],
+        "retrieved": [
+          "COPS (animated TV series)",
+          "Noel C. Bloom",
+          "Celebrity Home Entertainment",
+          "BraveStarr",
+          "Sterling Entertainment Group",
+          "Locke the Superman",
+          "Magna Home Entertainment",
+          "The Fairies",
+          "Monster Force",
+          "Tottoi"
+        ],
+        "latency_s": 9.623783699935302,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1387,
+          "output_tokens": 23
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h065",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both Emma Bunton and the members of the Spice Girls share the profession of being **singers** (as well as members of a singing/music group).",
+        "citations": [
+          "Spice Girls discography",
+          "List of songs recorded by the Spice Girls",
+          "Emma Bunton",
+          "Eleven to Fly",
+          "Spice Girls",
+          "A Girl Like Me (Emma Bunton album)",
+          "Maybe (Emma Bunton song)",
+          "In Real Life (band)",
+          "Lift Me Up (Geri Halliwell song)",
+          "Spice Girls merchandise and sponsorship deals"
+        ],
+        "retrieved": [
+          "Spice Girls discography",
+          "List of songs recorded by the Spice Girls",
+          "Emma Bunton",
+          "Eleven to Fly",
+          "Spice Girls",
+          "A Girl Like Me (Emma Bunton album)",
+          "Maybe (Emma Bunton song)",
+          "In Real Life (band)",
+          "Lift Me Up (Geri Halliwell song)",
+          "Spice Girls merchandise and sponsorship deals"
+        ],
+        "latency_s": 10.583229799987748,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1391,
+          "output_tokens": 38
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h066",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, *Khan Kluay* was released first (in 2006), while *Fantastic Mr. Fox* was released in 2009.",
+        "citations": [
+          "Khan Kluay",
+          "Fantastic Mr. Fox (film)",
+          "Khan Kluay 2",
+          "Jason Schwartzman",
+          "Khan Kluay (franchise)",
+          "List of Khan Kluay characters",
+          "State of Wonder",
+          "Jumbo (film)",
+          "Locke the Superman",
+          "Kantana Group"
+        ],
+        "retrieved": [
+          "Khan Kluay",
+          "Fantastic Mr. Fox (film)",
+          "Khan Kluay 2",
+          "Jason Schwartzman",
+          "Khan Kluay (franchise)",
+          "List of Khan Kluay characters",
+          "State of Wonder",
+          "Jumbo (film)",
+          "Locke the Superman",
+          "Kantana Group"
+        ],
+        "latency_s": 10.319138000020757,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1448,
+          "output_tokens": 38
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h067",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the wise female divinity associated with fermentation (Siduri) lived on the shore, associated with \"the Waters of Death.\"",
+        "citations": [
+          "Siduri",
+          "Mashu",
+          "Mayahuel",
+          "Gilgamesh in popular culture",
+          "Gilgamesh flood myth",
+          "Secondary fermentation (wine)",
+          "Ta (cuneiform)",
+          "Ur (cuneiform)",
+          "Epic of Gilgamesh",
+          "Enkidu"
+        ],
+        "retrieved": [
+          "Siduri",
+          "Mashu",
+          "Mayahuel",
+          "Gilgamesh in popular culture",
+          "Gilgamesh flood myth",
+          "Secondary fermentation (wine)",
+          "Ta (cuneiform)",
+          "Ur (cuneiform)",
+          "Epic of Gilgamesh",
+          "Enkidu"
+        ],
+        "latency_s": 10.84947540005669,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1431,
+          "output_tokens": 30
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h068",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, both John Corabi and David Byrne are musicians. Source 2 identifies David Byrne as an \"American musician,\" and Source 5 identifies John Corabi as a hard rock singer and guitarist who has worked with various bands (and Source 4/7/8/10 note his musical roles in bands and songwriting).",
+        "citations": [
+          "Ride, Rise, Roar",
+          "David Byrne",
+          "Songs of David Byrne and Brian Eno Tour",
+          "Union (band)",
+          "John Corabi",
+          "Xu Feng (album)",
+          "Hooligan's Holiday",
+          "Misunderstood (M\u00f6tley Cr\u00fce song)",
+          "Jack &amp; Jack",
+          "Eric Singer Project"
+        ],
+        "retrieved": [
+          "Ride, Rise, Roar",
+          "David Byrne",
+          "Songs of David Byrne and Brian Eno Tour",
+          "Union (band)",
+          "John Corabi",
+          "Xu Feng (album)",
+          "Hooligan's Holiday",
+          "Misunderstood (M\u00f6tley Cr\u00fce song)",
+          "Jack &amp; Jack",
+          "Eric Singer Project"
+        ],
+        "latency_s": 10.167357100057416,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1087,
+          "output_tokens": 66
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h069",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Chuck E. Cheese's is headquartered in Irving, Texas. The sources do not provide the headquarters location for Jet's Pizza (only noting that it was founded in Sterling Heights, Michigan). Therefore, a complete comparison cannot be made using only the provided information.",
+        "citations": [
+          "Chuck E. Cheese's",
+          "Chuck E. Cheese (character)",
+          "Chuck E. Cheese in the Galaxy 5000",
+          "Aaron Fechter",
+          "Pizza Showtime",
+          "ShowBiz Pizza Place",
+          "Jet's Pizza",
+          "The Rock-afire Explosion",
+          "Nolan Bushnell",
+          "California-style pizza"
+        ],
+        "retrieved": [
+          "Chuck E. Cheese's",
+          "Chuck E. Cheese (character)",
+          "Chuck E. Cheese in the Galaxy 5000",
+          "Aaron Fechter",
+          "Pizza Showtime",
+          "ShowBiz Pizza Place",
+          "Jet's Pizza",
+          "The Rock-afire Explosion",
+          "Nolan Bushnell",
+          "California-style pizza"
+        ],
+        "latency_s": 24.447463200078346,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1144,
+          "output_tokens": 59
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h070",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Ghettopoly was released first (in 2003), while Kolejka was launched later in February 2011.",
+        "citations": [
+          "Ghettopoly",
+          "Kolejka (game)",
+          "Boa vs. Python (song)",
+          "Ha (Killing Joke album)",
+          "Hard to Explain",
+          "Veteranz' Day",
+          "Onimusha: Warlords",
+          "Please Please Me (song)",
+          "Seoulite (album)",
+          "Xeko"
+        ],
+        "retrieved": [
+          "Ghettopoly",
+          "Kolejka (game)",
+          "Boa vs. Python (song)",
+          "Ha (Killing Joke album)",
+          "Hard to Explain",
+          "Veteranz' Day",
+          "Onimusha: Warlords",
+          "Please Please Me (song)",
+          "Seoulite (album)",
+          "Xeko"
+        ],
+        "latency_s": 11.101580500020646,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1437,
+          "output_tokens": 35
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h071",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Dalhousie University has more campuses, with three campuses in Halifax and a fourth in Bible Hill (plus medical teaching facilities in Saint John). The sources do not indicate that California State Polytechnic University, Pomona has multiple campuses.",
+        "citations": [
+          "California State Polytechnic University, Pomona",
+          "Cal Poly Pomona University Library",
+          "Julian A. McPhee",
+          "Dalhousie University",
+          "Cal Poly Pomona Broncos women's basketball",
+          "International Polytechnic High School",
+          "Richard Ziser",
+          "Cal Poly Pomona College of Engineering",
+          "Cal Poly Pomona College of Environmental Design",
+          "Cal Poly Pomona Broncos"
+        ],
+        "retrieved": [
+          "California State Polytechnic University, Pomona",
+          "Cal Poly Pomona University Library",
+          "Julian A. McPhee",
+          "Dalhousie University",
+          "Cal Poly Pomona Broncos women's basketball",
+          "International Polytechnic High School",
+          "Richard Ziser",
+          "Cal Poly Pomona College of Engineering",
+          "Cal Poly Pomona College of Environmental Design",
+          "Cal Poly Pomona Broncos"
+        ],
+        "latency_s": 5.015714299981482,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1338,
+          "output_tokens": 51
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h072",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, *The Straight Story* is a biographical road drama film (Source 6), while *Frozen* is a 3D computer-animated musical fantasy film (Source 3). Therefore, they are not of the same genre.",
+        "citations": [
+          "The Future of Oil: A Straight Story of the Canadian Oil Sands",
+          "Dan Flannery",
+          "Frozen (2013 film)",
+          "Angelo Badalamenti",
+          "Alvin Straight",
+          "The Straight Story",
+          "Mary Sweeney",
+          "Scream (1996 film)",
+          "Folk rock",
+          "Clermont, Iowa"
+        ],
+        "retrieved": [
+          "The Future of Oil: A Straight Story of the Canadian Oil Sands",
+          "Dan Flannery",
+          "Frozen (2013 film)",
+          "Angelo Badalamenti",
+          "Alvin Straight",
+          "The Straight Story",
+          "Mary Sweeney",
+          "Scream (1996 film)",
+          "Folk rock",
+          "Clermont, Iowa"
+        ],
+        "latency_s": 12.00847659993451,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1391,
+          "output_tokens": 52
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h073",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Tea Moderna is a Macedonian weekly magazine.",
+        "citations": [
+          "Tea Moderna (magazine)",
+          "H\u00e4nt Extra",
+          "H\u00e4nt Bild",
+          "Football Weekly",
+          "Makedonsko Sonce",
+          "Nikola Mladenov",
+          "Den Za Nas",
+          "Orange Field Tea Factory",
+          "2015 Macedonian Football Supercup",
+          "Henrik Dorsin"
+        ],
+        "retrieved": [
+          "Tea Moderna (magazine)",
+          "H\u00e4nt Extra",
+          "H\u00e4nt Bild",
+          "Football Weekly",
+          "Makedonsko Sonce",
+          "Nikola Mladenov",
+          "Den Za Nas",
+          "Orange Field Tea Factory",
+          "2015 Macedonian Football Supercup",
+          "Henrik Dorsin"
+        ],
+        "latency_s": 7.621738499961793,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1326,
+          "output_tokens": 14
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h074",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Pleiospilos is a flowering plant (specifically described as a genus of succulent flowering plants).",
+        "citations": [
+          "Pleiospilos",
+          "Pleiospilos nelii",
+          "Pleiospilos simulans",
+          "Pleiospilos bolusii",
+          "Pueraria",
+          "Lycoris (plant)",
+          "Ammi visnaga",
+          "Plantago ovata",
+          "Gouania",
+          "Mayahuel"
+        ],
+        "retrieved": [
+          "Pleiospilos",
+          "Pleiospilos nelii",
+          "Pleiospilos simulans",
+          "Pleiospilos bolusii",
+          "Pueraria",
+          "Lycoris (plant)",
+          "Ammi visnaga",
+          "Plantago ovata",
+          "Gouania",
+          "Mayahuel"
+        ],
+        "latency_s": 9.989239600021392,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1078,
+          "output_tokens": 25
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h075",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, The Northcap University is located in India (Gurugram, Haryana), while the University of the Philippines is located in the Philippines.",
+        "citations": [
+          "The Northcap University",
+          "University of the Philippines Diliman",
+          "Libraries in the Philippines",
+          "University of the Philippines Cebu",
+          "University of the Philippines Manila",
+          "La Salle University (Ozamiz)",
+          "University Avenue station",
+          "Sampaloc, Manila",
+          "University of the Philippines",
+          "California State Polytechnic University, Pomona"
+        ],
+        "retrieved": [
+          "The Northcap University",
+          "University of the Philippines Diliman",
+          "Libraries in the Philippines",
+          "University of the Philippines Cebu",
+          "University of the Philippines Manila",
+          "La Salle University (Ozamiz)",
+          "University Avenue station",
+          "Sampaloc, Manila",
+          "University of the Philippines",
+          "California State Polytechnic University, Pomona"
+        ],
+        "latency_s": 10.14606429997366,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1364,
+          "output_tokens": 33
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h076",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Money began publication first (October 1972), while Reunions magazine was first published in 1990.",
+        "citations": [
+          "Reunions magazine",
+          "Enterprise Magazine",
+          "Leggere Donna",
+          "What Next? (magazine)",
+          "Music Connection",
+          "Monk Magazine",
+          "Kung Fu Tai Chi",
+          "Bukhara magazine",
+          "Money (magazine)",
+          "Welsh Living"
+        ],
+        "retrieved": [
+          "Reunions magazine",
+          "Enterprise Magazine",
+          "Leggere Donna",
+          "What Next? (magazine)",
+          "Music Connection",
+          "Monk Magazine",
+          "Kung Fu Tai Chi",
+          "Bukhara magazine",
+          "Money (magazine)",
+          "Welsh Living"
+        ],
+        "latency_s": 10.131598899955861,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1233,
+          "output_tokens": 32
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h077",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Bret Easton Ellis is identified as a screenwriter (Source 1), but William James is described as an American philosopher, psychologist, and physician (Source 10). The sources do not state that William James is a screenwriter.",
+        "citations": [
+          "Bret Easton Ellis",
+          "Lunar Park",
+          "The Informers",
+          "Patrick Bateman",
+          "Imperial Bedrooms",
+          "The Informers (2008 film)",
+          "Junk Mail (book)",
+          "Camden College (fictional college)",
+          "Melbourne Underground Film Festival",
+          "William James"
+        ],
+        "retrieved": [
+          "Bret Easton Ellis",
+          "Lunar Park",
+          "The Informers",
+          "Patrick Bateman",
+          "Imperial Bedrooms",
+          "The Informers (2008 film)",
+          "Junk Mail (book)",
+          "Camden College (fictional college)",
+          "Melbourne Underground Film Festival",
+          "William James"
+        ],
+        "latency_s": 10.444850000087172,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1538,
+          "output_tokens": 51
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h078",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, both *Arizona v. United States* and *Reynolds v. United States* are United States Supreme Court cases (as indicated in Sources 2 and 7).",
+        "citations": [
+          "Criminal law in the Waite Court",
+          "Reynolds v. United States",
+          "Chy Lung v. Freeman",
+          "Arizona v. California",
+          "Legal Tender Cases",
+          "Stephen Halbrook",
+          "Arizona v. United States",
+          "Hollingsworth v. Perry",
+          "V.L. v. E.L.",
+          "Evans v. Jordan"
+        ],
+        "retrieved": [
+          "Criminal law in the Waite Court",
+          "Reynolds v. United States",
+          "Chy Lung v. Freeman",
+          "Arizona v. California",
+          "Legal Tender Cases",
+          "Stephen Halbrook",
+          "Arizona v. United States",
+          "Hollingsworth v. Perry",
+          "V.L. v. E.L.",
+          "Evans v. Jordan"
+        ],
+        "latency_s": 10.852088199928403,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1929,
+          "output_tokens": 35
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h079",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, David Lodge is older. He was born on January 28, 1935, while Thomas Friedman was born on July 20, 1953.",
+        "citations": [
+          "Thomas Friedman",
+          "Therapy (Lodge novel)",
+          "David Lodge (author)",
+          "The British Museum Is Falling Down",
+          "Thinks ...",
+          "Deaf Sentence",
+          "Out of the Shelter",
+          "Nice Work",
+          "Paradise News",
+          "Home Truths (novella)"
+        ],
+        "retrieved": [
+          "Thomas Friedman",
+          "Therapy (Lodge novel)",
+          "David Lodge (author)",
+          "The British Museum Is Falling Down",
+          "Thinks ...",
+          "Deaf Sentence",
+          "Out of the Shelter",
+          "Nice Work",
+          "Paradise News",
+          "Home Truths (novella)"
+        ],
+        "latency_s": 11.370470399968326,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 675,
+          "output_tokens": 43
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.6667,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h080",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Old German Shepherd Dog has origins outside of the United States (specifically from Germany, as they are a group of traditional working and herding dogs from Germany), whereas the Black Mouth Cur has its origins in the Southern United States.",
+        "citations": [
+          "Black Mouth Cur",
+          "Old German Shepherd Dog",
+          "Berger Blanc Suisse",
+          "Old German herding dogs",
+          "United Schutzhund Clubs of America",
+          "King Shepherd",
+          "German Shepherd",
+          "Schutzhund",
+          "The German Shepherd Dog in Word and Picture",
+          "Czechoslovakian Wolfdog"
+        ],
+        "retrieved": [
+          "Black Mouth Cur",
+          "Old German Shepherd Dog",
+          "Berger Blanc Suisse",
+          "Old German herding dogs",
+          "United Schutzhund Clubs of America",
+          "King Shepherd",
+          "German Shepherd",
+          "Schutzhund",
+          "The German Shepherd Dog in Word and Picture",
+          "Czechoslovakian Wolfdog"
+        ],
+        "latency_s": 10.16881259996444,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1059,
+          "output_tokens": 52
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h081",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, no, they are not both native to southern Asia. *Lycoris* is native to eastern and southern Asia, whereas *Ammi* is native to southern Europe, northern Africa, and Southwest Asia.",
+        "citations": [
+          "Ammi (plant)",
+          "Lycoris (plant)",
+          "Ammi visnaga",
+          "Plantago ovata",
+          "Awaous ocellaris",
+          "Gouania",
+          "Eleocharis atropurpurea",
+          "Osteomeles",
+          "Medinilla",
+          "Heteropogon contortus"
+        ],
+        "retrieved": [
+          "Ammi (plant)",
+          "Lycoris (plant)",
+          "Ammi visnaga",
+          "Plantago ovata",
+          "Awaous ocellaris",
+          "Gouania",
+          "Eleocharis atropurpurea",
+          "Osteomeles",
+          "Medinilla",
+          "Heteropogon contortus"
+        ],
+        "latency_s": 7.483243399998173,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1125,
+          "output_tokens": 48
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h082",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Killing Joke was formed first (in October 1978), while Acceptance was formed in 1998.",
+        "citations": [
+          "Ha (Killing Joke album)",
+          "Killing Joke",
+          "Killing Joke (1980 album)",
+          "Killing Joke (2003 album)",
+          "Pandemonium (Killing Joke album)",
+          "Acceptance (band)",
+          "Paul Ferguson",
+          "Batman: The Killing Joke",
+          "A New Day (song)",
+          "Kings and Queens (Killing Joke song)"
+        ],
+        "retrieved": [
+          "Ha (Killing Joke album)",
+          "Killing Joke",
+          "Killing Joke (1980 album)",
+          "Killing Joke (2003 album)",
+          "Pandemonium (Killing Joke album)",
+          "Acceptance (band)",
+          "Paul Ferguson",
+          "Batman: The Killing Joke",
+          "A New Day (song)",
+          "Kings and Queens (Killing Joke song)"
+        ],
+        "latency_s": 10.043496900005266,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1172,
+          "output_tokens": 25
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h083",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, both Upper Crust Pizzeria and Eatza Pizza are restaurants. Upper Crust Pizzeria is described as a chain of pizzeria restaurants [Source 1], and Eatza Pizza is described as a buffet-style restaurant chain [Source 5].",
+        "citations": [
+          "Upper Crust Pizzeria",
+          "California-style pizza",
+          "Lou Malnati's Pizzeria",
+          "New Haven-style pizza",
+          "Eatza Pizza",
+          "Mr. Jim's Pizza",
+          "Tilted block faulting",
+          "Basin and range topography",
+          "Chuck E. Cheese's",
+          "Lemon meringue pie"
+        ],
+        "retrieved": [
+          "Upper Crust Pizzeria",
+          "California-style pizza",
+          "Lou Malnati's Pizzeria",
+          "New Haven-style pizza",
+          "Eatza Pizza",
+          "Mr. Jim's Pizza",
+          "Tilted block faulting",
+          "Basin and range topography",
+          "Chuck E. Cheese's",
+          "Lemon meringue pie"
+        ],
+        "latency_s": 10.384415299980901,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1403,
+          "output_tokens": 49
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h084",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, a specific coast is not mentioned. However, the sources locate the California Aqueduct in **California** and the Lake Washington Ship Canal in **Seattle, Washington**.",
+        "citations": [
+          "Lake Washington Ship Canal",
+          "Salmon Bay",
+          "Lake Union",
+          "Ship Canal Bridge",
+          "Conibear Shellhouse",
+          "Lake Washington steamboats and ferries",
+          "Fremont Cut",
+          "Black River (Duwamish River)",
+          "Interbay, Seattle",
+          "California Aqueduct"
+        ],
+        "retrieved": [
+          "Lake Washington Ship Canal",
+          "Salmon Bay",
+          "Lake Union",
+          "Ship Canal Bridge",
+          "Conibear Shellhouse",
+          "Lake Washington steamboats and ferries",
+          "Fremont Cut",
+          "Black River (Duwamish River)",
+          "Interbay, Seattle",
+          "California Aqueduct"
+        ],
+        "latency_s": 12.459160900092684,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1286,
+          "output_tokens": 38
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h085",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, **X Ambassadors** has more members. \n\n* **Test Icicles** had 3 members (Rory Attwell, Sam Mehran, and Devonte Hynes), and is also referred to as a \"trio\" [Source 1, Source 6].\n* **X Ambassadors** currently consists of 4 members (Sam Harris, Casey Harris, Noah Feldshuh, and Adam Levin) [Source 3].",
+        "citations": [
+          "Test Icicles",
+          "Jungle (X Ambassadors and Jamie N Commons song)",
+          "X Ambassadors",
+          "Dev Hynes",
+          "Cannonball (Skylar Grey song)",
+          "For Screening Purposes Only",
+          "Dig Your Own Grave",
+          "The Ordinary Boys (album)",
+          "Boa vs. Python (song)",
+          "Circle. Square. Triangle"
+        ],
+        "retrieved": [
+          "Test Icicles",
+          "Jungle (X Ambassadors and Jamie N Commons song)",
+          "X Ambassadors",
+          "Dev Hynes",
+          "Cannonball (Skylar Grey song)",
+          "For Screening Purposes Only",
+          "Dig Your Own Grave",
+          "The Ordinary Boys (album)",
+          "Boa vs. Python (song)",
+          "Circle. Square. Triangle"
+        ],
+        "latency_s": 10.547863199957646,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1108,
+          "output_tokens": 95
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h086",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no mention of Dee Dee Ramone and Ben Weasel ever being in the same band.",
+        "citations": [
+          "The Ramainz",
+          "Dee Dee Ramone and the Chinese Dragons",
+          "Youth Gone Mad Featuring Dee Dee Ramone",
+          "Dee Dee Ramone",
+          "Chelsea Horror Hotel",
+          "Dee Dee Ramone I.C.L.C.",
+          "Ben Weasel",
+          "Rockaway Beach (song)",
+          "Dum Dum Girls",
+          "Animal Boy"
+        ],
+        "retrieved": [
+          "The Ramainz",
+          "Dee Dee Ramone and the Chinese Dragons",
+          "Youth Gone Mad Featuring Dee Dee Ramone",
+          "Dee Dee Ramone",
+          "Chelsea Horror Hotel",
+          "Dee Dee Ramone I.C.L.C.",
+          "Ben Weasel",
+          "Rockaway Beach (song)",
+          "Dum Dum Girls",
+          "Animal Boy"
+        ],
+        "latency_s": 9.418136499938555,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1411,
+          "output_tokens": 26
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h087",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Battle of Guam occurred first. The First Battle of Guam took place in 1941, while the battles of Manila mentioned occurred in 1574, 1945, and the Second Battle of Guam took place from July 21 to August 10, 1944.",
+        "citations": [
+          "Battle of Guam (1944)",
+          "Battle of Silda",
+          "Battle of the Burbia River",
+          "Battle of Manila (1945)",
+          "Battle of Alhandic",
+          "Battle of Aspromonte",
+          "Battle of Manila (1574)",
+          "Battle of Yao (Japan)",
+          "Battle of Klushino",
+          "Battle of Calabria"
+        ],
+        "retrieved": [
+          "Battle of Guam (1944)",
+          "Battle of Silda",
+          "Battle of the Burbia River",
+          "Battle of Manila (1945)",
+          "Battle of Alhandic",
+          "Battle of Aspromonte",
+          "Battle of Manila (1574)",
+          "Battle of Yao (Japan)",
+          "Battle of Klushino",
+          "Battle of Calabria"
+        ],
+        "latency_s": 10.025742900092155,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1765,
+          "output_tokens": 72
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h088",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, *Pocahontas* was made before *Born in China*. According to the sources, *Pocahontas* is a 1995 film, while *Born in China* is a 2016 film.",
+        "citations": [
+          "Liu Zhenhua",
+          "Born in China",
+          "Wu Weishan",
+          "Sun Chunlan",
+          "Li Zhusheng",
+          "Li Chengpeng",
+          "Christian Bale filmography",
+          "Japanese Buddhist architecture",
+          "Pocahontas (1995 film)",
+          "Adam Tsuei"
+        ],
+        "retrieved": [
+          "Liu Zhenhua",
+          "Born in China",
+          "Wu Weishan",
+          "Sun Chunlan",
+          "Li Zhusheng",
+          "Li Chengpeng",
+          "Christian Bale filmography",
+          "Japanese Buddhist architecture",
+          "Pocahontas (1995 film)",
+          "Adam Tsuei"
+        ],
+        "latency_s": 10.748020900064148,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 2449,
+          "output_tokens": 51
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h089",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both the Rampur Greyhound and the Borzoi are members of the sighthound family.",
+        "citations": [
+          "Borzoi",
+          "Rampur Greyhound",
+          "Common Platt Greyhound Track",
+          "Greyhound Lines",
+          "Cognitive authority",
+          "Daranghati Sanctuary",
+          "Nurse stereotypes",
+          "Babesia canis",
+          "Mick Parsons",
+          "Do It Again (EP)"
+        ],
+        "retrieved": [
+          "Borzoi",
+          "Rampur Greyhound",
+          "Common Platt Greyhound Track",
+          "Greyhound Lines",
+          "Cognitive authority",
+          "Daranghati Sanctuary",
+          "Nurse stereotypes",
+          "Babesia canis",
+          "Mick Parsons",
+          "Do It Again (EP)"
+        ],
+        "latency_s": 10.110875999904238,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1574,
+          "output_tokens": 25
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.75,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h090",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Atsushi Ogata graduated from Harvard College.",
+        "citations": [
+          "Atsushi Ogata",
+          "Charlie Albright",
+          "Ralph Smart",
+          "The Kuumba Singers of Harvard College",
+          "Bush Christmas (1947 film)",
+          "Radcliffe College",
+          "Samuel Cooper (clergyman)",
+          "Lou Silver",
+          "Curtain Up",
+          "The Good Old Days (film)"
+        ],
+        "retrieved": [
+          "Atsushi Ogata",
+          "Charlie Albright",
+          "Ralph Smart",
+          "The Kuumba Singers of Harvard College",
+          "Bush Christmas (1947 film)",
+          "Radcliffe College",
+          "Samuel Cooper (clergyman)",
+          "Lou Silver",
+          "Curtain Up",
+          "The Good Old Days (film)"
+        ],
+        "latency_s": 10.374471900053322,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1531,
+          "output_tokens": 15
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h091",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, there is no mention of At the Drive-In and Muse having a group in common. (Source 5 mentions Tony Hajjar playing in At the Drive-In and Sparta, while Source 3 defines Muse as an activist group, but they share no common group in the text.)",
+        "citations": [
+          "The Loving Kind (Nanci Griffith album)",
+          "Victory for the Comic Muse",
+          "Musicians United for Safe Energy",
+          "Cognitive authority",
+          "Tony Hajjar",
+          "Zesto Drive-In",
+          "Uranopolis",
+          "Nurse stereotypes",
+          "Clio",
+          "Lori Jakiela"
+        ],
+        "retrieved": [
+          "The Loving Kind (Nanci Griffith album)",
+          "Victory for the Comic Muse",
+          "Musicians United for Safe Energy",
+          "Cognitive authority",
+          "Tony Hajjar",
+          "Zesto Drive-In",
+          "Uranopolis",
+          "Nurse stereotypes",
+          "Clio",
+          "Lori Jakiela"
+        ],
+        "latency_s": 11.672844700049609,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1988,
+          "output_tokens": 63
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 0.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h092",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "No. While Frank Lloyd was an American film director, Olivier Assayas is a French film director.",
+        "citations": [
+          "Jorge Arriagada",
+          "Olivier Assayas",
+          "Frank Lloyd",
+          "Zeitgeist Films",
+          "Something in the Air (2012 film)",
+          "Cold Water (film)",
+          "Eddie's House",
+          "Graduation (2016 film)",
+          "Irma Vep",
+          "Melbourne Underground Film Festival"
+        ],
+        "retrieved": [
+          "Jorge Arriagada",
+          "Olivier Assayas",
+          "Frank Lloyd",
+          "Zeitgeist Films",
+          "Something in the Air (2012 film)",
+          "Cold Water (film)",
+          "Eddie's House",
+          "Graduation (2016 film)",
+          "Irma Vep",
+          "Melbourne Underground Film Festival"
+        ],
+        "latency_s": 10.065447100088932,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1351,
+          "output_tokens": 20
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h093",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, both Art Laboe and Scout Tufankjian share Armenian ancestry (referred to as Armenian-American).",
+        "citations": [
+          "Scout Tufankjian",
+          "Art Laboe",
+          "KOKO-FM",
+          "Interamerican Scout Jamboree",
+          "Scout Promise",
+          "Indian Scout (motorcycle)",
+          "Chinese Australians",
+          "Original Sound",
+          "Destinations",
+          "Vanguard (magazine)"
+        ],
+        "retrieved": [
+          "Scout Tufankjian",
+          "Art Laboe",
+          "KOKO-FM",
+          "Interamerican Scout Jamboree",
+          "Scout Promise",
+          "Indian Scout (motorcycle)",
+          "Chinese Australians",
+          "Original Sound",
+          "Destinations",
+          "Vanguard (magazine)"
+        ],
+        "latency_s": 9.982870899955742,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1327,
+          "output_tokens": 27
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h094",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, *The Great Locomotive Chase* was made by **Walt Disney Productions** (the sources do not mention *The Boatniks*).",
+        "citations": [
+          "Rogers Locomotive and Machine Works",
+          "The Yonah (locomotive)",
+          "The Great Locomotive Chase",
+          "The General (1926 film)",
+          "The Great Locomotive Chase Festival",
+          "Henry P. Haney",
+          "The General (locomotive)",
+          "The Texas (locomotive)",
+          "Indian Scout (motorcycle)",
+          "Cornelia, Georgia"
+        ],
+        "retrieved": [
+          "Rogers Locomotive and Machine Works",
+          "The Yonah (locomotive)",
+          "The Great Locomotive Chase",
+          "The General (1926 film)",
+          "The Great Locomotive Chase Festival",
+          "Henry P. Haney",
+          "The General (locomotive)",
+          "The Texas (locomotive)",
+          "Indian Scout (motorcycle)",
+          "Cornelia, Georgia"
+        ],
+        "latency_s": 11.776105399942026,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1311,
+          "output_tokens": 33
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 0.5
+      },
+      "error": null
+    },
+    {
+      "task_id": "h095",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Yes, both Muzzle and Screaming Trees are described as alternative rock bands/groups in the sources.",
+        "citations": [
+          "Bed of Roses (Screaming Trees song)",
+          "Napalm Beach",
+          "Muzzle (band)",
+          "Clairvoyance (album)",
+          "Screaming Trees discography",
+          "Screaming Trees",
+          "Van Conner",
+          "Dying Days",
+          "Nearly Lost You",
+          "Gary Lee Conner"
+        ],
+        "retrieved": [
+          "Bed of Roses (Screaming Trees song)",
+          "Napalm Beach",
+          "Muzzle (band)",
+          "Clairvoyance (album)",
+          "Screaming Trees discography",
+          "Screaming Trees",
+          "Van Conner",
+          "Dying Days",
+          "Nearly Lost You",
+          "Gary Lee Conner"
+        ],
+        "latency_s": 9.300474000046961,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1440,
+          "output_tokens": 21
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 0.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h096",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, *The Happiest Millionaire* was created first, as it is a 1967 film (Sources 4 and 8), whereas *Mars Needs Moms* is a 2011 film (Source 1).",
+        "citations": [
+          "Mars Needs Moms",
+          "ImageMovers",
+          "Mars Needs Guitars!",
+          "The Happiest Millionaire",
+          "The Happiest Millionaire (album)",
+          "Me Ol' Bamboo",
+          "I'll Always Be Irish",
+          "Fortuosity",
+          "Bill Thomas (costume designer)",
+          "Valentine Browne, 1st Earl of Kenmare"
+        ],
+        "retrieved": [
+          "Mars Needs Moms",
+          "ImageMovers",
+          "Mars Needs Guitars!",
+          "The Happiest Millionaire",
+          "The Happiest Millionaire (album)",
+          "Me Ol' Bamboo",
+          "I'll Always Be Irish",
+          "Fortuosity",
+          "Bill Thomas (costume designer)",
+          "Valentine Browne, 1st Earl of Kenmare"
+        ],
+        "latency_s": 10.233596900012344,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1265,
+          "output_tokens": 54
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h097",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, Kam\u0101l al-D\u012bn al-F\u0101ris\u012b was born first (in 1267), while M. A. Muqtedar Khan was born in 1966.",
+        "citations": [
+          "Kam\u0101l al-D\u012bn al-F\u0101ris\u012b",
+          "Elahi Ardabili",
+          "Moinuddin Chishti",
+          "Imam Birgivi",
+          "Kamal al-Din Gurg",
+          "Umar Al-Qadri",
+          "M. A. Muqtedar Khan",
+          "Syed Mir Hassan",
+          "N\u00fdtt l\u00edf",
+          "Wang Jingzhai"
+        ],
+        "retrieved": [
+          "Kam\u0101l al-D\u012bn al-F\u0101ris\u012b",
+          "Elahi Ardabili",
+          "Moinuddin Chishti",
+          "Imam Birgivi",
+          "Kamal al-Din Gurg",
+          "Umar Al-Qadri",
+          "M. A. Muqtedar Khan",
+          "Syed Mir Hassan",
+          "N\u00fdtt l\u00edf",
+          "Wang Jingzhai"
+        ],
+        "latency_s": 10.217085200012662,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1513,
+          "output_tokens": 48
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h098",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, St Chad's Cathedral, Birmingham became a cathedral first, having been raised to cathedral status in 1852 (Source 2). Chelmsford Cathedral became a cathedral later in 1914 (Source 3).",
+        "citations": [
+          "St Philip's Cathedral, Birmingham",
+          "St Chad's Cathedral, Birmingham",
+          "Chelmsford Cathedral",
+          "Dean of Chelmsford",
+          "Bishop's House, Birmingham",
+          "Michael Yorke",
+          "St Chad's College, Durham",
+          "Ellis Gowing",
+          "Godwin Birchenough",
+          "Dick Herrick"
+        ],
+        "retrieved": [
+          "St Philip's Cathedral, Birmingham",
+          "St Chad's Cathedral, Birmingham",
+          "Chelmsford Cathedral",
+          "Dean of Chelmsford",
+          "Bishop's House, Birmingham",
+          "Michael Yorke",
+          "St Chad's College, Durham",
+          "Ellis Gowing",
+          "Godwin Birchenough",
+          "Dick Herrick"
+        ],
+        "latency_s": 9.83302740007639,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1565,
+          "output_tokens": 53
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.1667,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h099",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Based on the provided sources, the Fastbacks were a band from Seattle, Washington (Source 10), and Local Natives is a band based in Los Angeles, California (Source 2). Therefore, they are not from the same US state.",
+        "citations": [
+          "Hummingbird (Local Natives album)",
+          "Local Natives",
+          "Gwendolyn Elaine Armstrong",
+          "Drakensberger cattle",
+          "Mendocino War",
+          "Jack &amp; Jack",
+          "Elections in Hamburg",
+          "East Fork State Park",
+          "List of United States state supreme court cases",
+          "Fastbacks"
+        ],
+        "retrieved": [
+          "Hummingbird (Local Natives album)",
+          "Local Natives",
+          "Gwendolyn Elaine Armstrong",
+          "Drakensberger cattle",
+          "Mendocino War",
+          "Jack &amp; Jack",
+          "Elections in Hamburg",
+          "East Fork State Park",
+          "List of United States state supreme court cases",
+          "Fastbacks"
+        ],
+        "latency_s": 9.448111000005156,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1591,
+          "output_tokens": 50
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 1.0,
+        "answer_f1": 1.0,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    },
+    {
+      "task_id": "h100",
+      "config_name": "single-shot-k10-matched",
+      "answer": {
+        "answer": "Florence Welch was born more recently (born 28 August 1986) compared to Gunnar Nelson (born September 20, 1967).",
+        "citations": [
+          "Gunnar Nelson (musician)",
+          "Florence Welch",
+          "Nelson (band)",
+          "Florence and the Machine",
+          "Lungs (album)",
+          "No Light, No Light",
+          "Sweet Nothing",
+          "What the Water Gave Me (song)",
+          "Ceremonials Tour",
+          "Emily Nelson"
+        ],
+        "retrieved": [
+          "Gunnar Nelson (musician)",
+          "Florence Welch",
+          "Nelson (band)",
+          "Florence and the Machine",
+          "Lungs (album)",
+          "No Light, No Light",
+          "Sweet Nothing",
+          "What the Water Gave Me (song)",
+          "Ceremonials Tour",
+          "Emily Nelson"
+        ],
+        "latency_s": 11.773397500044666,
+        "usage": {
+          "calls": 1,
+          "input_tokens": 1494,
+          "output_tokens": 35
+        },
+        "trace": null
+      },
+      "scores": {
+        "answer_em": 0.0,
+        "answer_f1": 0.6667,
+        "correctness": 1.0,
+        "evidence_recall": 1.0
+      },
+      "error": null
+    }
+  ]
+}

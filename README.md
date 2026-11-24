@@ -19,10 +19,12 @@ A benchmark you publish is different from "I evaluated my own app." It curates a
 
 ## Headline result
 
-On 100 HotpotQA multi-hop questions, the research agent answered **86%** correctly against **74%**
-for a single retrieve-and-answer call (paired difference +12 points, 95% CI [+4, +20]), at about
-6× the LLM calls. The gain is concentrated in bridge questions (+20 points); a second LLM grader
-from a different model family agreed with the judge on 39 of 40 sampled answers, grading blind. Full write-up: [RESULTS.md](RESULTS.md).
+On 100 HotpotQA multi-hop questions, the research agent answered **86%** correctly. With the same
+prompt rule for both systems, a single retrieve-and-answer call got **78%**: +8 points, 95% CI
+[0, +17], at about 6× the LLM calls. The gain is all on bridge questions, where a second search is
+needed: **+18 points [+6, +30]**. A first run, where only the baseline was invited to abstain, showed
+86% against 74%; the rerun corrects it. A second LLM grader from a different model family agreed with
+the judge on 39 of 40 sampled answers, grading blind. Full write-up: [RESULTS.md](RESULTS.md).
 
 ## What it measures
 
@@ -162,7 +164,7 @@ A system that errors on a task records the error for that task and keeps going; 
 
 - Publishing a *comparison* (agent vs baseline) is far more informative than a single system's scores — the delta is the story, and sometimes the baseline is closer than expected.
 - A judge has to be checked: here a second LLM grader from a different model family, grading blind, agreed with it on 39 of 40 answers, and the one disagreement showed it was slightly strict.
-- Check that the prompts are symmetric: the baseline was told it could say the sources were insufficient and the agent wasn't, which is now listed as a limit of the published result.
+- Check that the prompts are symmetric: the baseline was told it could say the sources were insufficient and the agent wasn't. Rerunning with the same rule cut the gap from 12 to 8 points and showed that the real gain is on bridge questions.
 - Capturing per-task errors instead of failing the run matters the moment a provider rate-limits you mid-benchmark.
 
 ## Testing
