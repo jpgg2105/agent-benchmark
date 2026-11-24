@@ -21,8 +21,8 @@ A benchmark you publish is different from "I evaluated my own app." It curates a
 
 On 100 HotpotQA multi-hop questions, the research agent answered **86%** correctly against **74%**
 for a single retrieve-and-answer call (paired difference +12 points, 95% CI [+4, +20]), at about
-6× the LLM calls. The gain is concentrated in bridge questions (+20 points); a second evaluator
-agreed with the LLM judge on 39 of 40 sampled answers. Full write-up: [RESULTS.md](RESULTS.md).
+6× the LLM calls. The gain is concentrated in bridge questions (+20 points); a second LLM grader
+from a different model family agreed with the judge on 39 of 40 sampled answers, grading blind. Full write-up: [RESULTS.md](RESULTS.md).
 
 ## What it measures
 
@@ -161,7 +161,7 @@ A system that errors on a task records the error for that task and keeps going; 
 ## Lessons learned
 
 - Publishing a *comparison* (agent vs baseline) is far more informative than a single system's scores — the delta is the story, and sometimes the baseline is closer than expected.
-- A judge has to be checked: here a second evaluator agreed with it on 39 of 40 answers, and the one disagreement showed it was slightly strict.
+- A judge has to be checked: here a second LLM grader from a different model family, grading blind, agreed with it on 39 of 40 answers, and the one disagreement showed it was slightly strict.
 - Check that the prompts are symmetric: the baseline was told it could say the sources were insufficient and the agent wasn't, which is now listed as a limit of the published result.
 - Capturing per-task errors instead of failing the run matters the moment a provider rate-limits you mid-benchmark.
 

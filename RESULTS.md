@@ -81,8 +81,8 @@ comparison.
 
 ## How far to trust the judge
 
-The same model answers and judges, so a second evaluator, different from the judge, graded 40
-answers (20 per system) against the gold answers, without seeing which system wrote each answer or
+The same model answers and judges, so a second LLM grader, from a different model family than the
+judge, graded 40 answers (20 per system) against the gold answers, without seeing which system wrote each answer or
 what the judge said. The sample over-represents the questions where the two systems disagreed:
 13 of the 40 answers come from those 18 questions, which is where a judge error would change the
 result. It agreed with the judge on **39 of 40** (Cohen's κ = 0.92). The one
